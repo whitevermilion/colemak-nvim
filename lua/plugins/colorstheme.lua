@@ -11,6 +11,8 @@ return {
           styles = { comments = "NONE", functions = "NONE" },
         },
       })
+      vim.api.nvim_set_hl(0, 'Comment', { fg = '#b3fbec', italic = true })  -- 淡绿色注释
+      vim.api.nvim_set_hl(0, 'Cursor', { fg = '#00CD00', bg = 'green' })      -- 绿色光标
     end,
   },
 
@@ -24,6 +26,8 @@ return {
         ui_contrast = "low",
         disable_italic_comment = 1,
       }
+      vim.api.nvim_set_hl(0, 'Comment', { fg = '#b3fbec', italic = true })  -- 淡绿色注释
+      vim.api.nvim_set_hl(0, 'Cursor', { fg = '#00CD00', bg = 'green' })      -- 绿色光标
     end,
   },
 
