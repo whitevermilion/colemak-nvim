@@ -22,16 +22,6 @@ return {
         map("n", "gD", vim.lsp.buf.declaration, "跳到声明")
         map("n", "gi", vim.lsp.buf.implementation, "跳到实现")
         map("n", "gr", vim.lsp.buf.references,  "查找引用")
-
-        -- 文档与签名
-        map("n", "K",  vim.lsp.buf.hover,       "悬停查看文档")
-        map("i", "<C-s>", vim.lsp.buf.signature_help, "查看函数签名")
-
-        -- 重构
-        map("n", "<leader>rn", vim.lsp.buf.rename, "重命名符号")
-
-        -- 代码动作（快速修复、生成函数等）
-        map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "代码动作")
       end
 
       -- 配置 LSP 服务器，并挂接按键
