@@ -43,21 +43,22 @@ return {
         changedelete = { text = "~" },
       },
       signcolumn = true,
-      current_line_blame = true,
-      current_line_blame_opts = {
-        virt_text_pos = "eol",
-        delay = 500,
-      },
+      current_line_blame = false,
+
     },
     config = function(_, opts)
       require("gitsigns").setup(opts)
-      
-      -- 直接设置全局快捷键，不需要自动命令
+
+      local gs = require("gitsigns")
       local map = vim.keymap.set
-      map("n", "<leader>ghs", function() require("gitsigns").stage_hunk() end, { desc = "Git Stage hunk" })
-      map("n", "<leader>ghr", function() require("gitsigns").reset_hunk() end, { desc = "Git Reset hunk" })
-      map("n", "<leader>ghp", function() require("gitsigns").preview_hunk() end, { desc = "Git Preview hunk" })
-      map("n", "<leader>ghd", function() require("gitsigns").diffthis() end, { desc = "Git Diff against staged" })
+
+      map("n", "<leader>gs", function() require("gitsigns").stage_hunk() end, { desc = "Git Stage hunk" })
+      map("n", "<leader>gr", function() require("gitsigns").reset_hunk() end, { desc = "Git Reset hunk" })
+      map("n", "<leader>gp", function() require("gitsigns").preview_hunk() end, { desc = "Git Preview hunk" })
+      map("n", "<leader>gd", function() require("gitsigns").diffthis() end, { desc = "Git Diff against staged" })
+      map("n", "<leader>gb", function()
+            gs.toggle_current_line_blame()
+      end, { desc = "Git Toggle line blame"})
    end
   },
 

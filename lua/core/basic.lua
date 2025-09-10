@@ -33,13 +33,13 @@ vim.opt.inccommand = "nosplit" -- 新增：实时替换预览
 
 -- UI 增强
 vim.opt.termguicolors = true
---vim.opt.cursorline = true
+vim.opt.cursorline = true
 vim.opt.background = "dark"
 vim.wo.signcolumn = "yes"
-vim.opt.pumblend = 10 -- 新增：弹出菜单透明度
-vim.opt.pumheight = 5 -- 新增：弹出菜单高度
-vim.opt.splitkeep = "screen" -- 新增：分屏时保持滚动位置
-vim.opt.fillchars = { -- 新增：特殊字符显示
+vim.opt.pumblend = 10
+vim.opt.pumheight = 5
+vim.opt.splitkeep = "screen"
+vim.opt.fillchars = {
 	foldopen = "",
 	foldclose = "",
 	fold = " ",
@@ -55,7 +55,7 @@ vim.o.timeoutlen = 500 -- 保留你的设置
 
 -- 高级功能
 vim.opt.list = true -- 新增：显示不可见字符
-vim.opt.wrap = false禁用自动换行
+vim.opt.wrap = true
 vim.opt.virtualedit = "block" -- 新增：虚拟编辑模式
 vim.opt.wildmode = "longest:full,full" -- 新增：命令行补全增强
 
@@ -77,4 +77,3 @@ vim.g.snacks_animate = true -- 动画效果
 vim.g.trouble_lualine = true -- Trouble 集成
 vim.g.markdown_recommended_style = 0 -- Markdown 缩进修复
 
---vim.opt.guicursor = "i:block"
