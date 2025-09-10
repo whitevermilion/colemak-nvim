@@ -35,7 +35,7 @@ return
           header = vim.split(logo, "\n"),
           center = {
             {
-              icon = " ",
+              icon = " ",
               desc = " Find File              ",
               action = function()
                 require("telescope.builtin").oldfiles({
@@ -48,13 +48,13 @@ return
               key = "f"
             },
             {
-              icon = " ",
+              icon = " ",
               desc = " New File               ",
               action = ":ene | startinsert<CR>",
-              key = "n"
+              key = "a"
             },
             {
-              icon = " ",
+              icon = " ",
               desc = " Recent Files          ",
               action = function()
                 require("telescope.builtin").oldfiles()
@@ -62,13 +62,13 @@ return
               key = "r"
             },
             {
-              icon = " ",
+              icon = " ",
               desc = " File Browser          ",
               action = "NvimTreeToggle",
               key = "b"
             },
             {
-              icon = " ",
+              icon = " ",
               desc = " Config                 ",
               action = function()
                 require("telescope.builtin").find_files({
@@ -90,7 +90,7 @@ return
               key = "l"
             },
             {
-              icon = "",
+              icon = " ",
               desc = " Quit Neovim           ",
               action = "q!",
               key = "q"

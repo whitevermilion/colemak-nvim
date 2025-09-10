@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "plugins"},
+    { import = "passiveplugins"},
     { import = "extras/dap"},
     --{ import = "extras/lang/lua"},
     --{ import = "extras/ai"},

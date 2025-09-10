@@ -10,8 +10,6 @@ return {
     },
     config = function()
       ------------------------------------------------------------------
-      -- 统一按键绑定：跳转、重命名、悬停、代码动作
-      ------------------------------------------------------------------
       local on_attach = function(_, bufnr)
         local map = function(mode, lhs, rhs, desc)
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
@@ -27,8 +25,7 @@ return {
       -- 配置 LSP 服务器，并挂接按键
       require("lspconfig").lua_ls.setup { on_attach = on_attach }
       require("lspconfig").clangd.setup { on_attach = on_attach }
-      -- 如需更多服务器，继续在此添加：
-      -- require("lspconfig").pyright.setup { on_attach = on_attach }
+      require("lspconfig").pyright.setup { on_attach = on_attach }
     end
   },
 
@@ -72,7 +69,6 @@ return {
           "lua_ls",
           "pyright",
           "clangd",
-          -- 在此添加更多需要自动安装的 LSP
         },
         automatic_installation = true
       }

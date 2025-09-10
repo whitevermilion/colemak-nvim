@@ -65,17 +65,7 @@ return {
         group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
         callback = lint_buffer
       })
-      
-      -- 添加手动触发命令
-      vim.api.nvim_create_user_command("Lint", lint_buffer, { desc = "手动触发代码检查" })
-      
-      -- 3. 添加系统路径回退 (可选)
-      -- 如果系统找不到 clang-tidy，尝试指定绝对路径
-      if vim.fn.executable("clang-tidy") == 0 then
-        if vim.fn.filereadable("/usr/bin/clang-tidy") == 1 then
-          lint.linters.clang_tidy.cmd = "/usr/bin/clang-tidy"
-        end
-      end
+
     end
   }
 }

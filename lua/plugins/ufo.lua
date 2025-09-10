@@ -50,14 +50,6 @@ return {
         end
       end, { desc = "Toggle current fold" })
 
-      -- za: 切换所有折叠（使用UFO API）
-      vim.keymap.set("n", "za", function()
-        if has_closed_folds() then
-          ufo.openAllFolds()
-        else
-          ufo.closeAllFolds()
-        end
-      end, { desc = "Toggle all folds" })
     end
   }
 }
