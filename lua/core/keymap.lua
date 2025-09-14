@@ -93,7 +93,4 @@ vim.keymap.set('v', 'n', 'j', { noremap = true, silent = true })
 vim.keymap.set('v', 'e', 'k', { noremap = true, silent = true })
 vim.keymap.set('v', 'i', 'l', { noremap = true, silent = true })
 
--- 禁用原始方向键（jkl）防止误触
-vim.keymap.set('n', 'j', '<Nop>', { noremap = true })
-vim.keymap.set('n', 'l', '<Nop>', { noremap = true })
 -- ===================== Colemak 映射结束 =====================

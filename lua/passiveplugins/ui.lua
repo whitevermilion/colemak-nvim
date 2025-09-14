@@ -82,7 +82,7 @@ return {
         timeout = 5000,
         max_width = 60,
         stages = "fade_in_slide_out",
-        render = "minimal",
+        render = "default",
         level = "info",
         background_colour = "#1e222a",
         icons = {
