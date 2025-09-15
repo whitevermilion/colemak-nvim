@@ -4,12 +4,6 @@ vim.g.maplocalleader = ","
 local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true}
 
--- 窗口导航
-map("n","<A-h>","<C-w>h",opt)
-map("n","<A-j>","<C-w>j",opt)
-map("n","<A-k>","<C-w>k",opt)
-map("n","<A-l>","<C-w>l",opt)
-
 -- 窗口调整
 map("n", "<C-Up>", "<cmd>resize +2<cr>", opt)
 map("n", "<C-Down>", "<cmd>resize -2<cr>", opt)
@@ -75,6 +69,18 @@ vim.keymap.set('n', 'h', 'h', { noremap = true, silent = true, desc = "向左移
 vim.keymap.set('n', 'n', 'j', { noremap = true, silent = true, desc = "向下移动" })
 vim.keymap.set('n', 'e', 'k', { noremap = true, silent = true, desc = "向上移动" })
 vim.keymap.set('n', 'i', 'l', { noremap = true, silent = true, desc = "向右移动" })
+
+-- 窗口导航 - Colemak 专用
+map("n", "<A-h>", "<C-w>h", opt)  -- 向左移动窗口焦点
+map("n", "<A-n>", "<C-w>j", opt)  -- 向下移动窗口焦点 (Colemak: n = j)
+map("n", "<A-e>", "<C-w>k", opt)  -- 向上移动窗口焦点 (Colemak: e = k)
+map("n", "<A-i>", "<C-w>l", opt)  -- 向右移动窗口焦点 (Colemak: i = l)
+
+-- Colemak 窗口调整
+map("n", "<C-n>", "<cmd>resize +2<cr>", opt)  -- 增加高度 (Colemak: n = 下)
+map("n", "<C-e>", "<cmd>resize -2<cr>", opt)  -- 减少高度 (Colemak: e = 上)
+map("n", "<C-h>", "<cmd>vertical resize -2<cr>", opt)  -- 减少宽度 (Colemak: h = 左)
+map("n", "<C-i>", "<cmd>vertical resize +2<cr>", opt)  -- 增加宽度 (Colemak: i = 右)
 
 -- 插入模式映射（u 代替 i）
 vim.keymap.set('n', 'u', 'i', { noremap = true, silent = true, desc = "插入模式" })
