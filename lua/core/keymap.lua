@@ -86,9 +86,6 @@ map("n", "<C-i>", "<cmd>vertical resize +2<cr>", opt)  -- 增加宽度 (Colemak:
 vim.keymap.set('n', 'u', 'i', { noremap = true, silent = true, desc = "插入模式" })
 vim.keymap.set('n', 'U', 'I', { noremap = true, silent = true, desc = "行首插入" })
 
--- 设置 z 为撤销
-vim.keymap.set({'n', 'v'}, 'z', 'u', { noremap = true, silent = true, desc = "撤销" })
-
 -- 设置 k 和 K 代替 n 和 N 的搜索功能
 vim.keymap.set('n', 'k', 'n', { noremap = true, silent = true, desc = "搜索下一个匹配项" })
 vim.keymap.set('n', 'K', 'N', { noremap = true, silent = true, desc = "搜索上一个匹配项" })
