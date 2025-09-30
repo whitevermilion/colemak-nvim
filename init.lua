@@ -1,5 +1,6 @@
 -- init.lua
 require("core.basic")
+require("core.amendments")
 require("core.keymap")
 require("core.lazy")
 require("core.autocmd")
