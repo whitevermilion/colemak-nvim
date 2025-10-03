@@ -1,8 +1,7 @@
-return {
   -- ========================
   -- 自动配对 (mini.pairs) - 增强版
   -- ========================
-  {
+return {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
     config = function()
@@ -30,77 +29,4 @@ return {
         }
       })
     end
-  },
-
-  -- ========================
-  -- 智能注释 (ts-comments.nvim)
-  -- ========================
-  {
-    "folke/ts-comments.nvim",
-    keys = {
-      { "gcc", desc = "Toggle line comment" },  -- 行注释
-      { "gc", mode = { "x" }, desc = "Comment selection" },  -- 仅可视模式
-      { "gbc", desc = "Toggle block comment" },  -- 块注释 (使用 gbc 避免冲突)
-      { "gcd", desc = "Toggle doc comment" }     -- 文档注释
-    },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("ts-comments").setup({
-        -- 语言特定配置
-        lang = {
-          lua = {
-            line = "--",
-            block = { left = "--[[", right = "]]" },
-            doc = { left = "---", right = "" }
-          },
-          python = {
-            line = "#",
-            block = { left = '"""', right = '"""' },
-            doc = { left = '"""', right = '"""' }
-          },
-          cpp = {
-            line = "//",
-            block = { left = "/*", right = "*/" },
-            doc = { left = "/*!", right = "*/" }
-          },
-          javascript = {
-            line = "//",
-            block = { left = "/*", right = "*/" },
-            doc = { left = "/**", right = "*/" }
-          }
-        },
-        
-        -- 上下文感知配置
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-          config = {
-            typescript = "// %s",
-            css = "/* %s */",
-            scss = "/* %s */",
-            html = "<!-- %s -->",
-            vue = "<!-- %s -->",
-            svelte = "<!-- %s -->"
-          }
-        },
-        
-        -- 高级功能
-        padding = true,          -- 注释后添加空格
-        sticky = true,           -- 光标保持在注释位置
-        enable_doc_comment = true -- 自动生成文档注释
-      })
-      
-      vim.keymap.del("n", "gc")
-
-      -- 增强键位：切换注释类型
-      vim.keymap.set("n", "gbc", function()
-        require("ts-comments").toggle_block()  -- 使用模块级函数
-      end, { desc = "Toggle block comment" })
-      
-      -- 文档注释快捷键
-      vim.keymap.set("n", "gcd", function()
-        require("ts-comments").toggle_doc()  -- 使用模块级函数
-      end, { desc = "Toggle doc comment" })
-    end
-  },
 }
