@@ -53,10 +53,10 @@ return {
         if is_daytime then
           vim.cmd.colorscheme("github_dark")
           vim.api.nvim_set_hl(0, 'Cursor', { fg = '#FFFFFF', bg = '#FFFFFF' })
-          print("🌞 白天模式: GitHub Dark 主题")
+          print("我是人间惆怅客，知君何事泪纵横。断肠声里忆平生。")
         else
           vim.cmd.colorscheme("everforest")
-          print("🌙 夜间模式: Everforest 主题")
+          print("书似青山常堆叠，灯如红豆最相思")
         end
       end
 

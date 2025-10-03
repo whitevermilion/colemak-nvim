@@ -1,0 +1,34 @@
+-- Git 集成插件
+return{
+    "lewis6991/gitsigns.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
+    opts = {
+      signs = {
+        add          = { text = "│" },
+        change       = { text = "│" },
+        delete       = { text = "_" },
+        topdelete    = { text = "‾" },
+        changedelete = { text = "~" },
+      },
+      signcolumn = true,
+      current_line_blame = false,
+
+    },
+    config = function(_, opts)
+      require("gitsigns").setup(opts)
+
+      local gs = require("gitsigns")
+      local map = vim.keymap.set
+
+      map("n", "<leader>gs", function() require("gitsigns").stage_hunk() end, { desc = "Git Stage hunk" })
+      map("n", "<leader>gr", function() require("gitsigns").reset_hunk() end, { desc = "Git Reset hunk" })
+      map("n", "<leader>gp", function() require("gitsigns").preview_hunk() end, { desc = "Git Preview hunk" })
+      map("n", "<leader>gd", function() require("gitsigns").diffthis() end, { desc = "Git Diff against staged" })
+      map("n", "<leader>gb", function()
+            gs.toggle_current_line_blame()
+      end, { desc = "Git Toggle line blame"})
+   end
+}
+
+
