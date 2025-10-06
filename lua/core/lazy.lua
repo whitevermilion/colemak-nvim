@@ -20,6 +20,7 @@ require("lazy").setup({
     { import = "passiveplugins"},
     { import = "extras/dap"},
     { import = "extras/lang/c"},
+    { import = "extras/lang/md"},
     --{ import = "extras/ai"},
   },
   defaults = {
