@@ -22,7 +22,7 @@ return {
       assistant = { text = "  ", hl = "Added" },  -- 使用程序员图标
     },
 
-    -- 添加会话内快捷键配置
+   -- 添加会话内快捷键配置
     keys = {
       -- 输入窗口快捷键
       ["Input:Submit"] = { mode = "n", key = "<CR>" },  -- 发送消息
