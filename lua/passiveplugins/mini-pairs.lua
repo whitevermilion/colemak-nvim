@@ -18,7 +18,6 @@ return {
           ["tex"] = { skip_next = "[%w%\\%(%{%[%\"%.%`%$]" }
         },
         
-        -- 自定义配对映射 - 添加了 <> 配对
         mappings = {
           ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
           ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]." },
