@@ -1,5 +1,4 @@
 return {
-  // 格式化插件
   "stevearc/conform.nvim",
   dependencies = { "williamboman/mason.nvim" },
   event = { "BufReadPre", "BufNewFile" },
