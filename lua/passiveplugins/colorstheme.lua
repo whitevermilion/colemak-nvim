@@ -29,16 +29,6 @@ return {
     end,
   },
 
-  -- Tokyo Night 主题 (备用)
-  {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    opts = {
-      style = "night",
-      dim_inactive = true,
-    },
-  },
-
   -- 主题切换命令
   {
     "LazyVim/LazyVim",
@@ -74,13 +64,6 @@ return {
         print("When the moonlight shines on the ground,The tree of life will be awaken")
       end, {})
 
-      -- Tokyo Night 主题命令
-      vim.api.nvim_create_user_command("Tokyo", function()
-        vim.cmd("Lazy load tokyonight")
-        vim.cmd.colorscheme("tokyonight-night")
-        print("🌃 Tokyo Night 主题已启用")
-      end, {})
- 
       -- 主题浏览器
       vim.api.nvim_create_user_command("ThemeList", function()
         vim.cmd("Telescope colorscheme")
