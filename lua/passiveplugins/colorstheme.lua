@@ -80,7 +80,7 @@ return {
         vim.cmd.colorscheme("tokyonight-night")
         print("🌃 Tokyo Night 主题已启用")
       end, {})
-
+ 
       -- 主题浏览器
       vim.api.nvim_create_user_command("ThemeList", function()
         vim.cmd("Telescope colorscheme")
