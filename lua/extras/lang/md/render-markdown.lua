@@ -15,8 +15,15 @@ return {
     -- 代码块样式
     code_blocks = {
       enabled = true,
-      -- 简化代码块边框
-      border = "single", -- 或者 "double", "rounded", "none"
+      border = "double",  -- 使用双线边框，更显眼
+      -- 或者使用 rounded 圆角边框
+      -- border = "rounded",
+      -- 添加行号
+      line_number = true,
+      -- 高亮当前行
+      highlight_current_line = true,
+      -- 代码块标题显示语言
+      show_language = true,
     },
     
     -- 列表符号调整
