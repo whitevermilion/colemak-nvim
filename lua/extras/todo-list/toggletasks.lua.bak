@@ -1,0 +1,34 @@
+-- 确保已安装 `jedrzejboczar/toggletasks.nvim`
+-- 并且已安装 `nvim-telescope/telescope.nvim`, `nvim-lua/plenary.nvim`, `akinshik/lua-readline.lua`
+return {
+  'jedrzejboczar/toggletasks.nvim',
+  dependencies = {
+    'nvim-telescope/telescope.nvim',
+    'nvim-lua/plenary.nvim',
+    'akinshik/lua-readline.lua', -- 用于更好的输入体验
+  },
+  config = function()
+    require('toggletasks').setup({
+      -- 你的telescope扩展
+      telescope = require('telescope'),
+      -- 任务列表的显示配置
+      task_list = {
+        -- 在底部以垂直分割窗口形式显示
+        direction = 'bottom',
+        -- 打开时焦点放在任务列表上
+        focus = true,
+        -- 窗口高度
+        height = 15,
+        -- 使用telescope进行任务选择
+        use_telescope = true,
+      },
+      -- 任务运行的终端，使用你已安装的toggleterm
+      toggleterm = {
+        direction = 'horizontal', -- 终端水平打开，可改为 `vertical` 或 `float`
+        -- 这里可以添加更多toggleterm的配置
+      },
+    })
+    -- 使用Telescope选择任务
+    vim.keymap.set("n", "<leader>ft", "<cmd>Telescope toggletasks<CR>", { desc = "Find and run a toggletask" })
+  end,
+}

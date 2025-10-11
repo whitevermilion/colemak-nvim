@@ -1,0 +1,21 @@
+
+return {
+  "jakewvincent/mkdnflow.nvim",
+  ft = "markdown",
+  config = function()
+    require('mkdnflow').setup({
+      code_blocks = {
+        highlight = true,
+        border = "double",
+        show_language = true,
+      },
+      links = {
+        style = "markdown",
+        conceal = false,
+      }
+      -- 移除 mappings 配置，使用插件默认映射
+    })
+  end
+}
+
+
