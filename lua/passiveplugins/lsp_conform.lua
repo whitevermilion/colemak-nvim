@@ -5,7 +5,6 @@ return {
   config = function()
     local conform = require("conform")
 
-    -- 简化后的格式化器配置
     conform.setup({
       formatters_by_ft = {
         python = { "black", "isort" },
@@ -19,6 +18,13 @@ return {
         json = { "jq" },
         markdown = { "prettier" },
       },
+
+      -- 格式化器配置
+      formatters = {
+        stylua = {
+          args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
+        },
+      },
     })
 
     -- 自动格式化（在保存时）
@@ -27,16 +33,11 @@ return {
       callback = function(args)
         local buf = args.buf
         local ft = vim.bo[buf].filetype
-        
+
         -- 检查当前文件类型是否有配置的格式化器
-        local has_formatter = false
-        for _, formatters in pairs(conform.formatters_by_ft) do
-          if formatters[ft] then
-            has_formatter = true
-            break
-          end
-        end
-        
+        local formatters = conform.formatters_by_ft[ft]
+        local has_formatter = formatters ~= nil
+
         -- 如果有对应的格式化器，则执行格式化
         if has_formatter then
           conform.format({
@@ -46,8 +47,7 @@ return {
             quiet = true,
           })
         end
-      end
+      end,
     })
-
-  end
+  end,
 }
