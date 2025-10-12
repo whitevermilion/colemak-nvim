@@ -1,9 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
-  cmd = {
-    "DapContinue", "DapToggleBreakpoint", "DapStepInto", "DapStepOver",
-    "DapStepOut", "DapTerminate", "DapRestart", "DapToggleRepl"
-  },
+  event = "VeryLazy",
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
