@@ -86,7 +86,9 @@ return
             {
               icon = "󰒲 ",
               desc = " Lazy                  ",
-              action = ":Lazy<CR>",
+              action = function ()
+                vim.cmd("Lazy")
+              end,
               key = "l"
             },
             {

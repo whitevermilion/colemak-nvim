@@ -1,5 +1,6 @@
 return {
   "rcarriga/nvim-dap-ui",
+  event = "User DapStarted",
   dependencies = {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio"
