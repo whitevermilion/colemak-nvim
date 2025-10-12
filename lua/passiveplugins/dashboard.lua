@@ -78,6 +78,14 @@ return
               key = "c"
             },
             {
+  icon = " ",
+  desc = " Extras Manager                  ",
+  action = function()
+    vim.cmd("edit ~/.config/nvim/lua/core/lazy.lua")
+  end,
+  key = "o"
+},
+            {
               icon = " ",
               desc = " Open Terminal         ",
               action = "ToggleTerm",
