@@ -19,11 +19,12 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
     { import = "passiveplugins" },
-    { import = "extras/dap" },
-    { import = "extras/lang/c" },
-    { import = "extras/lang/cpp" },
-    { import = "extras/lang/md" },
-    { import = "extras/ai" },
+    { import = "extras/extras_list" },
+    -- { import = "extras/dap" },
+    -- { import = "extras/lang/c" },
+    -- { import = "extras/lang/cpp" },
+    -- { import = "extras/lang/md" },
+    -- { import = "extras/ai" },
     -- { import = "extras/todo-list"},
   },
   defaults = {
@@ -33,3 +34,5 @@ require("lazy").setup({
     border = "rounded",
   },
 })
+
+require("extras.manager").setup()
