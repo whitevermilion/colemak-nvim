@@ -1,0 +1,76 @@
+.
+├── init.lua
+├── lazy-lock.json
+├── lua
+    ├── core // 核心文件
+│   │   ├── amendments.lua
+│   │   ├── autocmd.lua
+│   │   ├── basic.lua
+│   │   ├── keymap.lua
+│   │   ├── lazy.lua
+│   │   ├── neovide.lua
+│   │   └── nerd.txt
+    ├── extras // 额外组件，可以调控启动与否
+│   │   ├── ai
+│   │   │   ├── llm.lua
+│   │   │   └── llm.lua.back
+│   │   ├── dap
+│   │   │   ├── nvim_dap.lua
+│   │   │   ├── nvim_dap_ui.lua
+│   │   │   └── nvim_dap_virtual_text.lua
+│   │   ├── extras_list.lua
+│   │   ├── lang
+│   │   │   ├── c
+│   │   │   │   ├── c-template.c
+│   │   │   │   ├── dap_lang_c.lua.bak
+│   │   │   │   └── lsp_c_clangd.lua
+│   │   │   ├── cpp
+│   │   │   │   ├── cpp-template.cpp
+│   │   │   │   ├── dap_lang_cpp.lua.bak
+│   │   │   │   └── lsp_cpp_clangd.lua
+│   │   │   ├── lua
+│   │   │   │   └── lua_develop.lua
+│   │   │   └── md
+│   │   │       ├── markdown-preview.lua.bak
+│   │   │       ├── mdeval.lua
+│   │   │       ├── mkdnflow.lua.bak
+│   │   │       └── render-markdown.lua
+│   │   ├── manager.lua
+│   │   ├── poetry
+│   │   └── todo-list
+│   │       ├── neovim-tasks.lua
+│   │       └── toggletasks.lua.bak
+│   ├── lua_function
+│   │   └── poetry.lua
+│   ├── passiveplugins  // 被动使用的插件，基本没有使用的快捷键
+│   │   ├── colorstheme.lua
+│   │   ├── dashboard.lua
+│   │   ├── fcitx.lua
+│   │   ├── icons.lua
+│   │   ├── lazydev.lua.bak
+│   │   ├── lsp_base.lua
+│   │   ├── lsp_cmp.lua
+│   │   ├── lsp_conform.lua
+│   │   ├── lsp_linting.lua
+│   │   ├── mini-pairs.lua
+│   │   ├── nvim_lastplace.lua
+│   │   ├── rainbow-delimiters.lua
+│   │   ├── scrollbar.lua
+│   │   ├── ui.lua
+│   │   ├── ui_notify.lua
+│   │   └── which-key.lua
+│   └── plugins // 插件，提供强大的功能
+│       ├── bufferline.lua
+│       ├── code_runner.lua
+│       ├── editor.lua
+│       ├── git.lua
+│       ├── nvim_tree.lua
+│       ├── nvim_treesitter.lua
+│       ├── obsidian.lua
+│       ├── overseer.lua
+│       ├── telescope.lua
+│       ├── toggleterm.lua
+│       └── ufo.lua
+└── tree.txt
+
+16 directories, 58 files

@@ -36,3 +36,4 @@ require("lazy").setup({
 })
 
 require("extras.manager").setup()
+require("lua_function.poetry").setup()

@@ -8,4 +8,3 @@ require("core.neovide")
 
 --剪切板
 vim.opt.clipboard = "unnamedplus"
-

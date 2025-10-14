@@ -9,14 +9,14 @@ return {
           mode = "buffers",
           show_buffer_close_icons = false,
           offsets = {
-            { filetype = "NvimTree", text = "Explorer" }
+            { filetype = "NvimTree", text = "Explorer" },
           },
           hover = {
             enabled = true,
             delay = 200,
-            reveal = { "close" }
-          }
-        }
+            reveal = { "close" },
+          },
+        },
       })
 
       local keymap = vim.keymap.set
@@ -26,14 +26,14 @@ return {
       keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
       keymap("n", "<leader>bc", "<cmd>BufferLinePickClose<CR>", { desc = "Close buffer (pick)" })
       keymap("n", "<leader>bj", "<cmd>BufferLinePick<CR>", { desc = "Jump to buffer" })
-    end
+    end,
   },
 
   -- lualine.nvim - 状态栏
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
-      "nvim-tree/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
       local status, lualine = pcall(require, "lualine")
@@ -50,13 +50,13 @@ return {
           component_separators = { left = "|", right = "|" },
           section_separators = {
             left = vim.fn.exists("g:loaded_nerd_font") and " " or "",
-            right = vim.fn.exists("g:loaded_nerd_font") and "" or ""
+            right = vim.fn.exists("g:loaded_nerd_font") and "" or "",
           },
           disabled_filetypes = {
-            statusline = { "NvimTree", "alpha", "dashboard", "Trouble", "Outline" }
+            statusline = { "NvimTree", "alpha", "dashboard", "Trouble", "Outline" },
           },
           globalstatus = true,
-          refresh = { statusline = 500 }
+          refresh = { statusline = 500 },
         },
         sections = {
           lualine_a = { "mode" },
@@ -68,26 +68,26 @@ return {
               symbols = { unix = "LF", dos = "CRLF", mac = "CR" },
               fmt = function(str)
                 return vim.bo.fileformat ~= "unix" and str or ""
-              end
+              end,
             },
             {
               "encoding",
               fmt = function(str)
                 return vim.bo.fileencoding ~= "utf-8" and str or ""
-              end
+              end,
             },
-            "filetype"
+            "filetype",
           },
           lualine_y = { "progress" },
-          lualine_z = { "location" }
+          lualine_z = { "location" },
         },
         inactive_sections = {
           lualine_c = { "filename" },
-          lualine_x = { "location" }
+          lualine_x = { "location" },
         },
-        extensions = { "nvim-tree", "toggleterm" }
+        extensions = { "nvim-tree", "toggleterm" },
       })
-    end
+    end,
   },
 
   -- indent-blankline.nvim - 缩进参考线
@@ -97,33 +97,8 @@ return {
     main = "ibl",
     opts = {
       exclude = {
-        filetypes = { "dashboard", "alpha" }
-      }
-    }
+        filetypes = { "dashboard", "alpha" },
+      },
+    },
   },
-
-  -- nvim-notify - 通知系统
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    config = function()
-      local notify = require("notify")
-      notify.setup({
-        timeout = 5000,
-        max_width = 60,
-        stages = "fade_in_slide_out",
-        render = "minimal",
-        level = "info",
-        background_colour = "#1e222a",
-        icons = {
-          ERROR = "",
-          WARN = "",
-          INFO = "",
-          DEBUG = "",
-          TRACE = ""
-        }
-      })
-      vim.notify = notify
-    end
-  }
 }
