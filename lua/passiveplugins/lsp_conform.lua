@@ -24,6 +24,9 @@ return {
         stylua = {
           args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
         },
+        clang_format = {
+          args = { "--style={BasedOnStyle: Google, UseTab: false, IndentWidth: 4, TabWidth: 4}" },
+        },
       },
     })
 
