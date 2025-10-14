@@ -2,54 +2,53 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
-    event = "BufReadPost",  -- 延迟加载提升启动速度
+    event = "BufReadPost",
     config = function()
-      -- 安全加载模块
       local ok, ufo = pcall(require, "ufo")
       if not ok then
         vim.notify("nvim-ufo not installed!", vim.log.levels.WARN)
         return
       end
 
-      -- 基本设置：优化性能
-      vim.opt.foldcolumn = "0"   -- 关闭折叠标记列（提升性能）
-      vim.opt.foldlevel = 99     -- 默认打开所有折叠
+      vim.opt.foldcolumn = "0"
+      vim.opt.foldlevel = 99
       vim.opt.foldenable = true
 
-      -- 高效初始化 UFO（使用最小配置）
       ufo.setup({
         provider_selector = function(bufnr, filetype, buftype)
-          -- 优先使用性能更好的折叠引擎
-          if filetype == "markdown" or filetype == "text" then
-            return { "indent" }  -- 对文本文件使用缩进折叠（更快）
+          if filetype == "markdown" then
+            return { "treesitter", "indent" }
           end
           return { "treesitter", "indent" }
-        end
+        end,
       })
 
-      -- 优化折叠状态检测（避免全文件扫描）
-      local function has_closed_folds()
-        -- 只检查可见区域内的折叠状态
-        local top = vim.fn.line("w0")
-        local bottom = vim.fn.line("w$")
-        for lnum = top, bottom do
-          if vim.fn.foldclosed(lnum) > -1 then
-            return true
-          end
-        end
-        return false
-      end
+      -- 为 markdown 文件设置 treesitter 折叠和 conceallevel
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function()
+          vim.wo.foldmethod = "expr" -- 使用 vim.wo 设置窗口选项
+          vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+          vim.opt_local.conceallevel = 1 -- 在这里统一设置 conceallevel
+          vim.opt_local.wrap = false
+          vim.opt_local.spell = false
+        end,
+      })
 
-      -- zz: 切换当前行折叠（使用原生命令保持高效）
+      -- 只使用 zz 作为切换折叠的快捷键
       vim.keymap.set("n", "zz", function()
         local lnum = vim.api.nvim_win_get_cursor(0)[1]
         if vim.fn.foldclosed(lnum) > -1 then
           vim.cmd("normal! zo")
         else
-          vim.cmd("normal! zc")
+          local foldlevel = vim.fn.foldlevel(lnum)
+          if foldlevel > 0 then
+            vim.cmd("normal! zc")
+          else
+            vim.cmd("normal! za")
+          end
         end
-      end, { desc = "Toggle current fold" })
-
-    end
-  }
+      end, { desc = "Toggle fold" })
+    end,
+  },
 }

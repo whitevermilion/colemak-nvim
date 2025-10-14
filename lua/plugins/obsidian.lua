@@ -11,7 +11,6 @@ return {
       nvim_cmp = true,
       min_chars = 2,
     },
-    -- 极简配置：只启用核心功能
     ui = {
       enable = true,
     },
@@ -22,23 +21,13 @@ return {
   config = function(_, opts)
     require("obsidian").setup(opts)
 
-    -- 为 markdown 文件设置 conceallevel（必需）
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "markdown",
-      callback = function()
-        vim.opt_local.conceallevel = 1
-        vim.opt_local.wrap = false -- 代码块内不换行
-        vim.opt_local.spell = false
-      end,
-    })
-
-    -- 唯一的核心功能：智能 Enter 跳转
+    -- 移除重复的 conceallevel 设置，因为已经在 ufo.lua 中统一设置了
+    -- 只保留智能 Enter 跳转功能
     vim.keymap.set("n", "<CR>", function()
       local line = vim.fn.getline(".")
       local col = vim.fn.col(".")
       local char = line:sub(col, col)
 
-      -- 如果光标在链接上，跳转；否则正常换行
       if char == "]" or char == ")" or line:match("%[%[.*%]%]") then
         return require("obsidian").util.gf_passthrough()
       else
