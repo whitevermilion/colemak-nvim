@@ -13,7 +13,6 @@ map("v", "J", "<Nop>", opt)
 -- 禁用 Q 键（容易误入 Ex 模式）
 map("n", "Q", "<Nop>", opt)
 
-
 -- 修正常见的命令拼写错误
 vim.cmd([[
   command! W w
@@ -26,5 +25,3 @@ vim.cmd([[
   command! WQa wqa
   command! WQA wqa
 ]])
-
-
