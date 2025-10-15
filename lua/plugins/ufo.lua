@@ -48,7 +48,7 @@ return {
             vim.cmd("normal! za")
           end
         end
-      end, { desc = "Toggle fold" })
+      end, { desc = "[ufo]Toggle fold" })
     end,
   },
 }
