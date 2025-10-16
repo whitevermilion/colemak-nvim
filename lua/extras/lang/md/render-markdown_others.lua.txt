@@ -21,7 +21,7 @@ require('render-markdown').setup {
   code = {
     -- general
     width = 'block',
-    min_width = 80,
+    min_width = 40,
     -- borders
     border = 'thin',
     left_pad = 1,
@@ -33,11 +33,7 @@ require('render-markdown').setup {
     -- avoid making headings ugly
     highlight_inline = 'RenderMarkdownCodeInfo',
   },
-  heading = {
-    icons = { ' 󰼏 ', ' 󰎨 ', ' 󰼑 ', ' 󰎲 ', ' 󰼓 ', ' 󰎴 ' },
-    border = true,
-    render_modes = true, -- keep rendering while inserting
-  },
+  
   checkbox = {
     unchecked = {
       icon = '󰄱',

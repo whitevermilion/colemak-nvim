@@ -1,0 +1,198 @@
+-- lua/plugins/snacks.lua
+return {
+  "folke/snacks.nvim",
+  lazy = false,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
+    -- ===== 配置部分 =====
+    local header = [[
+░  ░░░░░░░░  ░░░░  ░░░      ░░░  ░░░░░░░
+▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒
+▓  ▓▓▓▓▓▓▓▓        ▓▓  ▓▓▓▓▓▓▓▓       ▓▓
+█  ████████  ████  ██  ████  ██  ████  █
+█        ██  ████  ███      ███       ██
+    ]]
+
+    -- 智能检测工作环境
+    local cwd = vim.fn.getcwd(0)
+    if cwd then
+      -- 检测笔记类项目
+      if cwd:find("Obsidian") or cwd:find("notes") or cwd:find("vault") or cwd:find("wiki") then
+        header = [[
+                   ----                 
+                --------                
+              ----------  --            
+           ------------  -----          
+        -------------   -------         
+       -------------   ----------       
+       ------------   ------------      
+       ------------  -------------      
+        -----------  -------------      
+      -   ---------  --------------     
+     ----  --------  --------------     
+    ------   ------   ---------------   
+   --------   -----     --------------  
+  ----------      ------     -----------
+ ------------  --------------   --------
+-------------  ----------------   ----  
+ ------------  ------------------  --   
+   ----------  -------------------      
+      ------  --------------------      
+        ---   -------------------       
+            ---------------------       
+                       ---------        
+        ]]
+      -- 检测代码项目
+      elseif cwd:find("src") or cwd:find("project") or cwd:find("code") then
+        header = [[
+    ╭──────────────────────────────────────────╮
+    │               DEV MODE                   │
+    ╰──────────────────────────────────────────╯
+        ]]
+      end
+    end
+
+    require("snacks").setup({
+      notifier = {},
+      picker = {
+        matcher = { frecency = true, cwd_bonus = true, history_bonus = true },
+        formatters = { icon_width = 3 },
+      },
+      dashboard = {
+        preset = {
+          keys = {
+            { icon = "󰈞 ", key = "f", desc = "Find files", action = ":lua Snacks.picker.smart()" },
+            { icon = " ", key = "h", desc = "Find history", action = ":lua Snacks.picker.recent()" },
+            { icon = " ", key = "n", desc = "New file", action = ":enew" },
+            { icon = " ", key = "r", desc = "Recent files", action = ":lua Snacks.picker.recent()" },
+            { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+            {
+              icon = "󰔛 ",
+              key = "P",
+              desc = "Lazy Profile",
+              action = ":Lazy profile",
+              enabled = package.loaded.lazy ~= nil,
+            },
+            { icon = " ", key = "M", desc = "Mason", action = ":Mason", enabled = package.loaded.mason ~= nil },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+          header = header,
+        },
+        sections = {
+          { section = "header" },
+          { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+        },
+      },
+      image = {
+        enabled = true,
+        doc = { enabled = true, inline = false, float = true, max_width = 80, max_height = 20 },
+      },
+      indent = {
+        enabled = false,
+        indent = { enabled = false },
+        animate = { duration = { step = 10, duration = 100 } },
+        scope = { enabled = true, char = "┊", underline = false, only_current = true, priority = 1000 },
+      },
+      styles = {
+        snacks_image = {
+          border = "rounded",
+          backdrop = false,
+        },
+      },
+    })
+
+    --[[===== 快捷键映射部分 =====
+    local map = function(key, func, desc)
+      vim.keymap.set('n', key, func, { desc = desc })
+    end
+
+    -- 文件查找相关
+    map('<leader>ff', Snacks.picker.smart, 'Smart find file')
+    map('<leader>fo', Snacks.picker.recent, 'Find recent file')
+    map('<leader>fw', Snacks.picker.grep, 'Find content')
+    map('<leader>fc', function()
+      Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+    end, 'Find nvim config file')
+
+    -- 缓冲区相关
+    map('<leader><leader>', function()
+      Snacks.picker.buffers { sort_lastused = true }
+    end, 'Find buffers')
+    map('<leader>bc', Snacks.bufdelete.delete, 'Delete buffers')
+    map('<leader>bC', Snacks.bufdelete.other, 'Delete other buffers')
+
+    -- LSP 和符号相关
+    map('grr', Snacks.picker.lsp_references, 'Find lsp references')
+    map('<leader>fS', Snacks.picker.lsp_workspace_symbols, 'Find workspace symbol')
+    map('<leader>fs', function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      local clients = vim.lsp.get_clients { bufnr = bufnr }
+
+      local function has_lsp_symbols()
+        for _, client in ipairs(clients) do
+          if client.server_capabilities.documentSymbolProvider then
+            return true
+          end
+        end
+        return false
+      end
+
+      if has_lsp_symbols() then
+        Snacks.picker.lsp_symbols {
+          layout = 'dropdown',
+          tree = true,
+        }
+      else
+        Snacks.picker.treesitter()
+      end
+    end, 'Find symbol in current buffer')
+
+    -- 其他实用功能
+    map('<leader>fh', function()
+      Snacks.picker.help { layout = 'dropdown' }
+    end, 'Find in help')
+    map('<leader>fk', function()
+      Snacks.picker.keymaps { layout = 'dropdown' }
+    end, 'Find keymap')
+    map('<leader>fm', Snacks.picker.marks, 'Find mark')
+    map('<leader>ft', function()
+      if vim.bo.filetype == 'markdown' then
+        Snacks.picker.grep_buffers {
+          finder = 'grep',
+          format = 'file',
+          prompt = ' ',
+          search = '^\\s*- \\[ \\]',
+          regex = true,
+          live = false,
+          args = { '--no-ignore' },
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+          buffers = false,
+          supports_live = false,
+          layout = 'ivy',
+        }
+      else
+        Snacks.picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME', 'HACK' }, layout = 'select' }
+      end
+    end, 'Find todo')
+    map('<leader>fi', Snacks.picker.icons, 'Find icon')
+    map('<leader>fj', Snacks.picker.jumps, 'Find jump')
+
+    -- Git 相关
+    map('<leader>gg', function()
+      Snacks.lazygit { cwd = Snacks.git.get_root() }
+    end, 'Open lazygit')
+    map('<leader>gb', Snacks.git.blame_line, 'Git blame line')
+
+    -- 通知相关
+    map('<leader>n', Snacks.notifier.show_history, 'Notification history')
+    map('<leader>N', Snacks.notifier.hide, 'Hide notification')
+
+    -- Dashboard
+    map('<leader>dd', function() Snacks.dashboard.toggle() end, 'Toggle dashboard')
+        ]]
+  end,
+}
