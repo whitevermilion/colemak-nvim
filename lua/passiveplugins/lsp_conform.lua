@@ -8,8 +8,8 @@ return {
     conform.setup({
       formatters_by_ft = {
         python = { "black", "isort" },
-        c = { "clang_format" },
-        cpp = { "clang_format" },
+        -- c = { "clang_format" },
+        -- cpp = { "clang_format" },
         lua = { "stylua" },
         javascript = { "prettier" },
         typescript = { "prettier" },
@@ -24,9 +24,9 @@ return {
         stylua = {
           args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
         },
-        clang_format = {
-          args = { "--style={BasedOnStyle: Google, UseTab: false, IndentWidth: 4, TabWidth: 4}" },
-        },
+        -- clang_format = {
+        -- args = { "--style={BasedOnStyle: Google, UseTab: false, IndentWidth: 4, TabWidth: 4}" },
+        -- },
       },
     })
 
