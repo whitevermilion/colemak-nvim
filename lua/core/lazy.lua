@@ -23,9 +23,10 @@ require("lazy").setup({
     -- { import = "extras/dap" },
     -- { import = "extras/lang/c" },
     -- { import = "extras/lang/cpp" },
+    -- { import = "extras/lang/lua" },
+    -- { import = "extras/lang/python" },
     -- { import = "extras/lang/md" },
     -- { import = "extras/ai" },
-    -- { import = "extras/todo-list"},
   },
   defaults = {
     lazy = false,
