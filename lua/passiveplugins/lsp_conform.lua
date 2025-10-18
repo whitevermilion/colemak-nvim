@@ -8,16 +8,11 @@ return {
     conform.setup({
       formatters_by_ft = {
         -- 为 Markdown 文件启用注入式格式化器
-        markdown = { "injected" },
+        markdown = { "prettier", "injected" },
         c = { "clang_format" },
         cpp = { "clang_format" },
         lua = { "stylua" },
         -- python = { "black", "isort" },
-        -- javascript = { "prettier" },
-        -- typescript = { "prettier" },
-        -- html = { "prettier" },
-        -- css = { "prettier" },
-        -- json = { "jq" },
       },
 
       -- 添加格式化器配置
