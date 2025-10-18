@@ -32,7 +32,7 @@ vim.g.neovide_scroll_animation_length = 0.3
 
 -- 光标动画效果模式
 -- 可选: 'railgun', 'torpedo', 'pixiedust', 'sonicboom', 'ripple', 'wireframe'
--- vim.g.neovide_cursor_vfx_mode = "sonicboom"
+-- vim.g.neovide_cursor_vfx_mode = "wireframe"
 
 -- 光标动画参数
 vim.g.neovide_cursor_vfx_opacity = 200.0
@@ -63,18 +63,18 @@ local function set_scale_factor(scale)
 end
 
 -- 增大字体/界面 (Ctrl + +)
-vim.keymap.set({'n', 'v'}, '<C-=>', function()
-    set_scale_factor(vim.g.neovide_scale_factor * 1.25)
+vim.keymap.set({ "n", "v" }, "<C-=>", function()
+  set_scale_factor(vim.g.neovide_scale_factor * 1.25)
 end)
 
 -- 减小字体/界面 (Ctrl + -)
-vim.keymap.set({'n', 'v'}, '<C-->', function()
-    set_scale_factor(vim.g.neovide_scale_factor / 1.25)
+vim.keymap.set({ "n", "v" }, "<C-->", function()
+  set_scale_factor(vim.g.neovide_scale_factor / 1.25)
 end)
 
 -- 重置字体/界面 (Ctrl + 0)
-vim.keymap.set({'n', 'v'}, '<C-0>', function()
-    set_scale_factor(1.0)
+vim.keymap.set({ "n", "v" }, "<C-0>", function()
+  set_scale_factor(1.0)
 end)
 
 -- 你可以添加更多快捷键，例如切换无边框模式

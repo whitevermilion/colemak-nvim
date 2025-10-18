@@ -39,7 +39,7 @@ function M.show_todo_list()
 
   -- 移除空行和多余空格
   content = content:gsub("\n+", "\n"):gsub("^%s+", ""):gsub("%s+$", "")
-
+  --[[
   if content == "" then
     -- 内容为空时显示"今日无事"
     vim.notify("今日无事", vim.log.levels.INFO, {
@@ -48,7 +48,7 @@ function M.show_todo_list()
     })
     return
   end
-
+    ]]
   -- 简洁显示待办事项
   vim.notify(content, vim.log.levels.INFO, {
     title = "待办事项",

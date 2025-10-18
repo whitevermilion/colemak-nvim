@@ -1,0 +1,5 @@
+- [ ] md文件没法格式化代码
+- [ ] md文件没有目录
+- [ ] 给dashboard使用渐进色
+- [ ] 停止todolist的git上传
+- [ ] 研究一下visual模式
