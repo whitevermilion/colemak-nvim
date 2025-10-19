@@ -39,3 +39,4 @@ require("lazy").setup({
 require("extras.manager").setup()
 require("lua_function.poetry").setup()
 require("lua_function.todo_list_remainder").setup()
+require("lua_function.time_count").setup()
