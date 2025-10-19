@@ -1,3 +1,4 @@
+--在侧边显示文件树，支持文件创建删除重名
 return {
   --在侧边显示文件树，支持文件创建删除重名
   "nvim-tree/nvim-tree.lua",
@@ -6,6 +7,14 @@ return {
     { "<leader>uf", ":NvimTreeToggle<CR>", desc = "Toggle File Tree" }, -- 文件树开关
   },
   opts = {
+    -- 新增：文件过滤配置 - 显示被 .gitignore 忽略的文件
+    filters = {
+      dotfiles = false, -- 显示点文件（以 . 开头的文件）
+      git_ignored = false, -- 关键设置：显示被 gitignore 忽略的文件
+      custom = {}, -- 自定义过滤规则，留空表示不过滤
+      exclude = {}, -- 排除文件列表，留空表示不排除
+    },
+
     -- 界面美化
     renderer = {
       icons = {
@@ -27,6 +36,13 @@ return {
         enable = true, -- 显示缩进标记线
       },
       highlight_git = true, -- 高亮 Git 状态变化的文件
+    },
+
+    -- Git 相关配置
+    git = {
+      enable = true, -- 启用 Git 集成
+      ignore = false, -- 关键设置：不基于 .gitignore 过滤文件显示
+      timeout = 400, -- Git 操作超时时间
     },
 
     -- 视图行为
@@ -68,7 +84,8 @@ return {
       local function opts(desc)
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
-
+      -- 滚动优化（如果觉得滚动慢）
+      vim.g.neovide_scroll_animation_length = 0.15 -- 默认是 0.3
       -- 首先执行默认映射
       api.config.mappings.default_on_attach(bufnr)
 
@@ -82,6 +99,35 @@ return {
       vim.keymap.set("n", "e", function()
         vim.cmd("normal! k")
       end, opts("Up"))
+
+      -- 添加切换显示被忽略文件的快捷键
+      vim.keymap.set("n", "<leader>gi", function()
+        local view = require("nvim-tree.view")
+        local tree = require("nvim-tree")
+
+        -- 获取当前配置
+        local config = tree.get_config()
+
+        -- 切换 git_ignored 过滤
+        config.filters.git_ignored = not config.filters.git_ignored
+        config.git.ignore = not config.git.ignore
+
+        -- 重新设置配置
+        tree.setup(config)
+
+        -- 刷新视图
+        if view.is_visible() then
+          view.close()
+          view.open()
+        end
+
+        -- 显示当前状态
+        if config.filters.git_ignored then
+          print("隐藏被 .gitignore 的文件")
+        else
+          print("显示所有文件（包括被 .gitignore 的）")
+        end
+      end, opts("Toggle git ignored files"))
 
       -- 禁用原来的 j 和 k 键
       vim.keymap.set("n", "j", "<Nop>", { buffer = bufnr, desc = "Disable j key" })
