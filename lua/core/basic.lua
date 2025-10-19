@@ -40,14 +40,14 @@ vim.opt.pumblend = 10
 vim.opt.pumheight = 5
 vim.opt.splitkeep = "screen"
 vim.opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
 }
-vim.api.nvim_set_hl(0, 'Cursor', { fg = '#FFFFFF', bg = '#FFFFFF' })
+vim.api.nvim_set_hl(0, "Cursor", { fg = "#FFFFFF", bg = "#FFFFFF" })
 
 -- 性能优化
 vim.opt.updatetime = 200 -- 新增：减少 CursorHold 延迟
@@ -61,14 +61,14 @@ vim.opt.wildmode = "longest:full,full" -- 新增：命令行补全增强
 
 -- 折叠设置 (Neovim 0.10+ 优化)
 if vim.fn.has("nvim-0.10") == 1 then
-	vim.opt.smoothscroll = true
-	vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
-	vim.opt.foldmethod = "expr"
-	vim.opt.foldtext = ""
-	vim.opt.foldlevel = 99
+  vim.opt.smoothscroll = true
+  vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+  vim.opt.foldmethod = "expr"
+  vim.opt.foldtext = ""
+  vim.opt.foldlevel = 99
 else
-	vim.opt.foldmethod = "indent"
-	vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+  vim.opt.foldmethod = "indent"
+  vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 end
 
 -- LazyVim 全局设置 (按需添加)
@@ -77,3 +77,5 @@ vim.g.snacks_animate = true -- 动画效果
 vim.g.trouble_lualine = true -- Trouble 集成
 vim.g.markdown_recommended_style = 0 -- Markdown 缩进修复
 
+-- 使用fish作为默认终端
+vim.opt.shell = "fish"
