@@ -5,7 +5,7 @@ require("core.keymap")
 require("core.lazy")
 require("core.autocmd")
 require("core.neovide")
-require("core.lsp")
+-- require("core.lsp")
 
 --剪切板
 vim.opt.clipboard = "unnamedplus"
