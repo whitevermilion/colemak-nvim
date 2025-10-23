@@ -38,7 +38,6 @@ function M.show_status()
     { key = "c", name = "C 语言支持" },
     { key = "md", name = "Markdown 增强" },
     { key = "ai", name = "AI 编程助手" },
-    { key = "todo-list", name = "任务管理" },
   }
 
   -- 收集状态信息
@@ -78,11 +77,6 @@ function M.setup()
   vim.api.nvim_create_user_command("ExtrasEdit", function()
     vim.cmd("edit ~/.config/nvim/lua/extras/extras_list.lua")
   end, { desc = "编辑 Extras 配置" })
-
-  -- 新增：显示状态命令
-  vim.api.nvim_create_user_command("ExtrasStatus", function()
-    M.show_status()
-  end, { desc = "显示 Extras 模块状态" })
 end
 
 return M

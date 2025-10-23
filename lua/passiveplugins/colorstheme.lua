@@ -22,7 +22,7 @@ return {
 
       vim.api.nvim_create_user_command("Ever", function()
         vim.cmd.colorscheme("everforest")
-        vim.notify("When the moonlight shines on the ground, The tree of life will be awaken", vim.log.levels.INFO, {
+        vim.notify("When the moonlight shines on the ground,\n The tree of life will be awaken", vim.log.levels.INFO, {
           title = "主题切换",
           timeout = 1000,
         })

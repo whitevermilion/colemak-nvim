@@ -21,10 +21,6 @@ require("lazy").setup({
     { import = "passiveplugins" },
     { import = "extras/extras_list" },
     -- { import = "extras/dap" },
-    -- { import = "extras/lang/c" },
-    -- { import = "extras/lang/cpp" },
-    -- { import = "extras/lang/lua" },
-    -- { import = "extras/lang/python" },
     -- { import = "extras/lang/md" },
     -- { import = "extras/ai" },
   },
@@ -36,7 +32,6 @@ require("lazy").setup({
   },
 })
 
-require("extras.manager").setup()
 require("lua_function.poetry").setup()
 require("lua_function.todo_list_remainder").setup()
 require("lua_function.time_count").setup()
