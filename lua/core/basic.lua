@@ -10,6 +10,13 @@ vim.o.writebackup = false
 vim.o.swapfile = false
 vim.o.splitbelow = true
 vim.o.splitright = true
+
+--换行
+vim.opt.wrap = true -- 启用视觉换行（软换行）
+vim.opt.linebreak = true -- 只在单词边界处换行，避免单词被截断
+vim.opt.breakindent = true -- 换行后保持缩进，提升可读性
+vim.opt.showbreak = "↳ " -- 在折行前显示一个箭头符号（可选）
+
 -- 缩进与编辑
 vim.opt.expandtab = true
 vim.opt.tabstop = 4 -- 保留你的 tab 设置
@@ -55,7 +62,6 @@ vim.o.timeoutlen = 500 -- 保留你的设置
 
 -- 高级功能
 vim.opt.list = true -- 新增：显示不可见字符
-vim.opt.wrap = true
 vim.opt.virtualedit = "block" -- 新增：虚拟编辑模式
 vim.opt.wildmode = "longest:full,full" -- 新增：命令行补全增强
 

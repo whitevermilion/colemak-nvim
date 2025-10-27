@@ -55,7 +55,7 @@ set("n", "<leader>sf", function()
   end
 end, { desc = "[S]plit [F]ile 分屏打开文件" })
 
--- 创建自定义命令 :wQ 来保存并返回 Dashboard
+-- 创建自定义命令 :WQ 来保存并返回 Dashboard
 vim.api.nvim_create_user_command("WQ", function()
   -- 保存当前文件
   vim.cmd("write")
@@ -95,6 +95,11 @@ vim.keymap.set("v", "h", "h", { noremap = true, silent = true })
 vim.keymap.set("v", "n", "j", { noremap = true, silent = true })
 vim.keymap.set("v", "e", "k", { noremap = true, silent = true })
 vim.keymap.set("v", "i", "l", { noremap = true, silent = true })
+
+-- 使用 l 作为 u 的撤销功能（普通模式）
+vim.keymap.set("n", "l", "u", { noremap = true, silent = true, desc = "撤销" })
+-- 使用 L 作为 U 的重做功能（普通模式）
+vim.keymap.set("n", "L", "<C-r>", { noremap = true, silent = true, desc = "重做" })
 
 -- ===================== Colemak 映射结束 =====================
 
