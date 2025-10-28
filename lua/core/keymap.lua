@@ -10,8 +10,8 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", opt)
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", opt)
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", opt)
 
-map("n", "<C-j>", "<C-e>", opt)
-map("n", "<C-k>", "<C-y>", opt)
+map("n", "<C-n>", "<C-e>", opt)
+map("n", "<C-e>", "<C-y>", opt)
 
 -- 禁用 J 键,防止误触
 map("n", "J", "<Nop>", opt)
