@@ -21,8 +21,8 @@ return {
           winblend = 0, -- 透明度 (0-100)
         },
         mappings = {
-          scrollU = "<C-e>", -- 向上滚动
-          scrollD = "<C-n>", -- 向下滚动
+          scrollU = "<C-k>", -- 向上滚动
+          scrollD = "<C-j>", -- 向下滚动
           jumpTop = "[", -- 跳到顶部
           jumpBot = "]", -- 跳到底部
         },
