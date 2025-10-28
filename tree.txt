@@ -1,8 +1,17 @@
 .
+├── after
+│   └── ftplugin
+│       ├── cpp.lua
+│       └── markdown.lua
 ├── init.lua
 ├── lazy-lock.json
+├── lsp
+│   ├── clangd.lua
+│   ├── lua_ls.lua
+│   ├── marksman.lua
+│   └── pyright.lua
 ├── lua
-    ├── core // 核心文件
+│   ├── core
 │   │   ├── amendments.lua
 │   │   ├── autocmd.lua
 │   │   ├── basic.lua
@@ -10,67 +19,58 @@
 │   │   ├── lazy.lua
 │   │   ├── neovide.lua
 │   │   └── nerd.txt
-    ├── extras // 额外组件，可以调控启动与否
+│   ├── extras
 │   │   ├── ai
-│   │   │   ├── llm.lua
-│   │   │   └── llm.lua.back
+│   │   │   └── llm.lua
 │   │   ├── dap
 │   │   │   ├── nvim_dap.lua
 │   │   │   ├── nvim_dap_ui.lua
 │   │   │   └── nvim_dap_virtual_text.lua
 │   │   ├── extras_list.lua
+│   │   ├── extras_manager.lua.bak
 │   │   ├── lang
 │   │   │   ├── c
-│   │   │   │   ├── c-template.c
-│   │   │   │   ├── dap_lang_c.lua.bak
-│   │   │   │   └── lsp_c_clangd.lua
+│   │   │   │   └── c-template.c
 │   │   │   ├── cpp
-│   │   │   │   ├── cpp-template.cpp
-│   │   │   │   ├── dap_lang_cpp.lua.bak
-│   │   │   │   └── lsp_cpp_clangd.lua
-│   │   │   ├── lua
-│   │   │   │   └── lua_develop.lua
+│   │   │   │   └── cpp-template.cpp
 │   │   │   └── md
-│   │   │       ├── markdown-preview.lua.bak
+│   │   │       ├── markdown-toc.lua
 │   │   │       ├── mdeval.lua
-│   │   │       ├── mkdnflow.lua.bak
+│   │   │       ├── obsidian.lua
 │   │   │       └── render-markdown.lua
-│   │   ├── manager.lua
-│   │   ├── poetry
-│   │   └── todo-list
-│   │       ├── neovim-tasks.lua
-│   │       └── toggletasks.lua.bak
+│   │   └── todo_list
+│   │       └── todo_list.md
 │   ├── lua_function
-│   │   └── poetry.lua
-│   ├── passiveplugins  // 被动使用的插件，基本没有使用的快捷键
+│   │   ├── poetry.lua
+│   │   ├── time_count.lua
+│   │   └── todo_list_remainder.lua
+│   ├── passiveplugins
 │   │   ├── colorstheme.lua
 │   │   ├── dashboard.lua
 │   │   ├── fcitx.lua
 │   │   ├── icons.lua
-│   │   ├── lazydev.lua.bak
-│   │   ├── lsp_base.lua
+│   │   ├── lazydev.lua
 │   │   ├── lsp_cmp.lua
 │   │   ├── lsp_conform.lua
 │   │   ├── lsp_linting.lua
+│   │   ├── mason.lua
 │   │   ├── mini-pairs.lua
 │   │   ├── nvim_lastplace.lua
 │   │   ├── rainbow-delimiters.lua
 │   │   ├── scrollbar.lua
 │   │   ├── ui.lua
-│   │   ├── ui_notify.lua
 │   │   └── which-key.lua
-│   └── plugins // 插件，提供强大的功能
+│   └── plugins
 │       ├── bufferline.lua
 │       ├── code_runner.lua
 │       ├── editor.lua
 │       ├── git.lua
 │       ├── nvim_tree.lua
 │       ├── nvim_treesitter.lua
-│       ├── obsidian.lua
 │       ├── overseer.lua
+│       ├── snacks.lua.bak
 │       ├── telescope.lua
 │       ├── toggleterm.lua
 │       └── ufo.lua
-└── tree.txt
-
-16 directories, 58 files
+├── tree.txt
+└── visual-model.md
