@@ -1,5 +1,4 @@
 vim.lsp.enable("marksman")
-vim.o.wrap = false
 vim.opt.conceallevel = 2
 vim.keymap.set("n", "gx", function()
   local line = vim.fn.getline(".")
