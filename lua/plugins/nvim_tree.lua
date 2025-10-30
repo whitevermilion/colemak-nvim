@@ -1,3 +1,4 @@
+-- nvim/lua/plugins/nvim_tree.lua
 --在侧边显示文件树，支持文件创建删除重名
 return {
   --在侧边显示文件树，支持文件创建删除重名

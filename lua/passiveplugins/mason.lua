@@ -1,4 +1,4 @@
--- lua/passiveplugins/mason.lua
+-- nvim/lua/passiveplugins/mason.lua
 
 return {
   {

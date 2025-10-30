@@ -1,3 +1,4 @@
+-- nvim/lua/core/amendments.lua
 -- amendments.lua - 误触修正专用配置文件
 -- 专注解决各种误触问题，保持配置整洁
 

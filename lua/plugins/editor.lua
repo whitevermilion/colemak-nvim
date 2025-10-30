@@ -1,3 +1,4 @@
+-- nvim/lua/plugins/editor.lua
 return {
   -- 全局搜索替换插件
   {
@@ -12,7 +13,14 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash Jump" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash Jump",
+      },
     },
   },
 
@@ -25,5 +33,5 @@ return {
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
     },
-  }
+  },
 }

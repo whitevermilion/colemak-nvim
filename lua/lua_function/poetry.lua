@@ -1,4 +1,4 @@
--- lua/lua_function/poetry.lua
+-- nvim/lua/lua_function/poetry.lua
 local M = {}
 
 local poetry_library = {

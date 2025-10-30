@@ -1,3 +1,4 @@
+-- nvim/lua/lua_function/teme_count.lua
 -- 超简使用时间追踪（修复版）
 local M = {}
 

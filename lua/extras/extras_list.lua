@@ -1,4 +1,4 @@
--- lua/extras/extras_list.lua
+-- nvim/lua/extras/extras_list.lua
 return {
   { import = "extras/dap" }, -- 调试功能
   { import = "extras/lang/md" }, -- Markdown增强

@@ -1,3 +1,4 @@
+-- nvim/lua/passiveplugins/lsp_conform.lua
 return {
   "stevearc/conform.nvim",
   dependencies = { "williamboman/mason.nvim" },

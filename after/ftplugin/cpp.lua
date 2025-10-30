@@ -1,3 +1,4 @@
+-- after/ftplugin/cpp.lua
 vim.lsp.start({
   name = "clangd",
   capabilities = {

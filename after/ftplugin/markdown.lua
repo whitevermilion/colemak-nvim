@@ -1,4 +1,4 @@
--- markdown.lua (精简版)
+-- after/ftplugin/markdown.lua
 vim.opt.conceallevel = 2
 
 vim.keymap.set("n", "gx", function()

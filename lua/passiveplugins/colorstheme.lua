@@ -1,3 +1,4 @@
+-- nvim/lua/passiveplugins/colorscheme.lua
 return {
   -- GitHub Dark 主题
   {

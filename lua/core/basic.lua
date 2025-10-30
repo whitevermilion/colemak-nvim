@@ -1,3 +1,4 @@
+-- nvim/lua/core/basic.lua
 -- 基本设置
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = "utf-8"

@@ -1,3 +1,4 @@
+-- nvim/lua/plugins/bufferline.lua
 return {
   -- bufferline.nvim - 标签页管理
   {

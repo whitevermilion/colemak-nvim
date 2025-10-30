@@ -1,3 +1,4 @@
+-- nvim/lsp/clangd.lua
 return {
   capabilities = {
     textDocument = {
@@ -5,18 +6,18 @@ return {
         editsNearCursor = true,
       },
     },
-    offsetEncoding = { 'utf-8', 'utf-16' },
+    offsetEncoding = { "utf-8", "utf-16" },
   },
   -- cmd = { 'clangd', '--malloc-trim' },
-  cmd = { 'clangd' },
-  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  cmd = { "clangd" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   root_markers = {
-    '.clangd',
-    '.clang-tidy',
-    '.clang-format',
-    'compile_commands.json',
-    'compile_flags.txt',
-    'configure.ac', -- AutoTools
+    ".clangd",
+    ".clang-tidy",
+    ".clang-format",
+    "compile_commands.json",
+    "compile_flags.txt",
+    "configure.ac", -- AutoTools
   },
   single_file_support = true,
 }

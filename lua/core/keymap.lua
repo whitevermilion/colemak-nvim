@@ -1,3 +1,4 @@
+-- nvim/lua/core/keymap.lua
 -- ===================== 基础设置 =====================
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
@@ -8,9 +9,6 @@ local set = vim.keymap.set
 -- ===================== 基础导航 =====================
 -- 禁用 J 键，防止误触
 map("n", "J", "<Nop>", opt)
-
--- 显示所有快捷键
-set("n", "<leader>?", "<cmd>WhichKey<cr>", { desc = "Show all keymaps" })
 
 -- ===================== 窗口管理 =====================
 -- 窗口调整（方向键）

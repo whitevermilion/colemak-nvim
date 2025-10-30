@@ -1,3 +1,4 @@
+-- nvim/lua/passiveplugins/dashboard.lua
 return
 -- dashboard-nvim - 启动界面
 {
@@ -48,12 +49,6 @@ return
             key = "f",
           },
           {
-            icon = " ",
-            desc = " New File               ",
-            action = ":ene | startinsert<CR>",
-            key = "a",
-          },
-          {
             icon = " ",
             desc = " Recent Files          ",
             action = function()
@@ -90,14 +85,6 @@ return
             desc = " Open Terminal         ",
             action = "ToggleTerm",
             key = "t",
-          },
-          {
-            icon = "󰒲 ",
-            desc = " Lazy                  ",
-            action = function()
-              vim.cmd("Lazy")
-            end,
-            key = "l",
           },
           {
             icon = " ",

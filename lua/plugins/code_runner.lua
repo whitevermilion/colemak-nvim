@@ -1,3 +1,4 @@
+-- nvim/lua/plugins/code_runner.lua
 return {
   "CRAG666/code_runner.nvim",
   config = function()
@@ -7,12 +8,12 @@ return {
         c = {
           "cd $dir &&",
           "gcc $fileName -o $fileNameWithoutExt -lm -g -Wall &&",
-          "$dir/$fileNameWithoutExt"
+          "$dir/$fileNameWithoutExt",
         },
         cpp = {
           "cd $dir &&",
           "g++ $fileName -o $fileNameWithoutExt -g -Wall &&",
-          "$dir/$fileNameWithoutExt"
+          "$dir/$fileNameWithoutExt",
         },
       },
       -- 结束：文件类型与执行命令配置
@@ -27,7 +28,12 @@ return {
     -- 设置快捷键
     vim.keymap.set("n", "<leader>rr", ":RunCode<CR>", { noremap = true, silent = false, desc = "Run Code" })
     vim.keymap.set("n", "<leader>rf", ":RunFile<CR>", { noremap = true, silent = false, desc = "Run File" })
-    vim.keymap.set("n", "<leader>rft", ":RunFile tab<CR>", { noremap = true, silent = false, desc = "Run File in New Tab" })
+    vim.keymap.set(
+      "n",
+      "<leader>rft",
+      ":RunFile tab<CR>",
+      { noremap = true, silent = false, desc = "Run File in New Tab" }
+    )
     vim.keymap.set("n", "<leader>rp", ":RunProject<CR>", { noremap = true, silent = false, desc = "Run Project" })
     vim.keymap.set("n", "<leader>rc", ":RunClose<CR>", { noremap = true, silent = false, desc = "Close Runner" })
   end,

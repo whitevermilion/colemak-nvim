@@ -37,22 +37,15 @@ function M.show_todo_list()
   local content = file:read("*a")
   file:close()
 
-  -- 移除空行和多余空格
   content = content:gsub("\n+", "\n"):gsub("^%s+", ""):gsub("%s+$", "")
-  --[[
   if content == "" then
-    -- 内容为空时显示"今日无事"
-    vim.notify("今日无事", vim.log.levels.INFO, {
-      title = "待办事项",
-      timeout = 3000, -- 3秒后自动关闭
-    })
     return
   end
-    ]]
+
   -- 简洁显示待办事项
   vim.notify(content, vim.log.levels.INFO, {
     title = "待办事项",
-    timeout = 5000, -- 5秒后自动关闭
+    timeout = 2000,
   })
 end
 

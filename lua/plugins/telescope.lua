@@ -1,3 +1,4 @@
+-- nvim/lua/plugins/telescope.lua
 return {
   "nvim-telescope/telescope.nvim",
   version = "*",
@@ -46,7 +47,7 @@ return {
   },
   config = function(_, opts)
     require("telescope").setup(opts)
-    
+
     -- 修复复合操作支持
     local actions = require("telescope.actions")
     actions._increment_custom = function()

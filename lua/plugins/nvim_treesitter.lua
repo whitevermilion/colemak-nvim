@@ -1,3 +1,4 @@
+-- nvim/lua/plugins/nvim_treesitter.lua
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -7,9 +8,19 @@ return {
       require("nvim-treesitter.configs").setup({
         -- 安装语法解析器的语言列表，可以按需添加更多语言
         ensure_installed = {
-            "c", "cpp", "lua", "javascript", "typescript", "python", 
-            "html", "css", "json", "bash", "markdown", "vim",
-            "yaml"
+          "c",
+          "cpp",
+          "lua",
+          "javascript",
+          "typescript",
+          "python",
+          "html",
+          "css",
+          "json",
+          "bash",
+          "markdown",
+          "vim",
+          "yaml",
         },
 
         -- 同步安装语言解析器，无需手动安装
