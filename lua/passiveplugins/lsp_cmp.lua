@@ -15,36 +15,20 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      -- 加载通用代码片段库
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      -- 图标类型映射
+      -- 精简图标映射 - 只保留最常用的
       local kind_icons = {
-        Text = "",
-        Method = "󰆧",
-        Function = "󰊕",
-        Constructor = "",
-        Field = "󰇽",
-        Variable = "󰂡",
-        Class = "󰠱",
-        Interface = "",
-        Module = "",
-        Property = "󰜢",
-        Unit = "",
-        Value = "󰎠",
-        Enum = "",
-        Keyword = "󰌋",
-        Snippet = "",
-        Color = "󰏘",
-        File = "󰈙",
-        Reference = "",
-        Folder = "󰉋",
-        EnumMember = "",
-        Constant = "󰏿",
-        Struct = "",
-        Event = "",
-        Operator = "󰆕",
-        TypeParameter = "󰅲",
+        Text = "", -- 文本、注释、字符串
+        Method = "󰆧", -- 方法
+        Function = "󰊕", -- 函数
+        Variable = "󰂡", -- 变量
+        Constant = "󰏿", -- 常量、宏定义
+        Keyword = "󰌋", -- 关键字
+        Struct = "", -- 结构体、类
+        File = "󰈙", -- 文件
+        Folder = "󰉋", -- 文件夹
+        Default = "?",
       }
 
       cmp.setup({
@@ -54,45 +38,29 @@ return {
           end,
         },
         mapping = {
-          -- 使用 Tab 键采纳补全建议
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.confirm({ select = true }) -- 选择当前高亮项
+              cmp.confirm({ select = true })
             elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump() -- 片段跳转
-            else
-              fallback() -- 默认 Tab 行为
-            end
-          end, { "i", "s" }),
-
-          -- 片段内反向跳转
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+              luasnip.expand_or_jump()
             else
               fallback()
             end
           end, { "i", "s" }),
 
-          -- 仅保留必要导航键
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-
-          -- 基础功能键
-          ["<C-Space>"] = cmp.mapping.complete(), -- 触发补全
-          ["<C-e>"] = cmp.mapping.abort(), -- 关闭补全
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
         },
         sources = cmp.config.sources({
-          { name = "nvim_lsp" }, -- LSP 源
-          { name = "luasnip" }, -- 片段源
-          { name = "buffer" }, -- 缓冲区内容
-          { name = "path" }, -- 文件路径
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            -- 添加图标
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind] or "?", vim_item.kind)
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind] or kind_icons.Default, vim_item.kind)
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
               luasnip = "[Snippet]",
@@ -102,16 +70,8 @@ return {
             return vim_item
           end,
         },
-        window = {
-          completion = cmp.config.window.bordered({
-            border = "rounded",
-          }),
-          documentation = cmp.config.window.bordered({
-            border = "rounded",
-          }),
-        },
         experimental = {
-          ghost_text = true, -- 显示半透明预览文本
+          ghost_text = true,
         },
       })
     end,
@@ -119,14 +79,8 @@ return {
   {
     "L3MON4D3/LuaSnip",
     config = function()
-      local luasnip = require("luasnip")
-
-      -- 片段历史保留
-      luasnip.config.setup({
+      require("luasnip").config.setup({
         history = true,
-        updateevents = "TextChanged,TextChangedI",
-        region_check_events = "InsertEnter",
-        delete_check_events = "InsertLeave",
       })
     end,
   },
