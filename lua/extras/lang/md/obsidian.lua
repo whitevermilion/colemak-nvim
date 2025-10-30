@@ -24,7 +24,7 @@ return {
 
     ui = {
       enable = true,
-      dirable = {
+      disable = {
         "outline",
         "backlinks",
         "hover",

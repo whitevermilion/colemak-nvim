@@ -91,7 +91,11 @@ return {
       enabled = false,
     },
     link = {
-      wiki = { icon = " ", highlight = "RenderMarkdownWikiLink", scope_highlight = "RenderMarkdownWikiLink" },
+      wiki = {
+        icon = "󰌹 ",
+        highlight = "RenderMarkdownWikiLink",
+        scope_highlight = "RenderMarkdownWikiLink",
+      },
       image = " ",
       custom = {
         github = { pattern = "github", icon = " " },
@@ -107,5 +111,11 @@ return {
   },
   config = function(_, opts)
     require("render-markdown").setup(opts)
+
+    -- 设置双链为紫色
+    vim.api.nvim_set_hl(0, "RenderMarkdownWikiLink", {
+      fg = "#c678dd", -- 紫色
+      underline = false,
+    })
   end,
 }
