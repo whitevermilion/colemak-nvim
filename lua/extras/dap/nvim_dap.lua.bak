@@ -1,12 +1,36 @@
 -- nvim/lua/extras/dap/nvim_dap.lua
 
+-- 独立的可执行文件发现函数
+local function find_executables()
+  local cwd = vim.fn.getcwd()
+  local executables = {}
+
+  -- 查找当前目录下的可执行文件
+  local files = vim.fn.split(vim.fn.system("find . -maxdepth 1 -type f -executable"), "\n")
+
+  for _, file in ipairs(files) do
+    if file ~= "" and not file:match("%.%.") then
+      local name = file:gsub("^./", "")
+      if name ~= "" then
+        table.insert(executables, {
+          name = "调试 " .. name,
+          program = cwd .. "/" .. name,
+        })
+      end
+    end
+  end
+
+  return executables
+end
+
 -- 基础调试配置模板
 local base_config = {
   type = "codelldb",
   request = "launch",
   cwd = "${workspaceFolder}",
   stopOnEntry = false,
-  console = "externalTerminal",
+  console = "integratedTerminal",
+  terminal = "integrated",
   args = {},
 }
 
@@ -60,29 +84,6 @@ return {
       end,
       desc = "[dap]终止调试",
     },
-    -- 添加测试快捷键
-    {
-      "<leader>dT",
-      function()
-        require("dap").run({
-          name = "终端测试",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("测试程序路径: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-          console = "externalTerminal",
-          externalTerminal = {
-            command = "foot",
-            args = { "-T", "DAP 测试终端" },
-          },
-          args = {},
-        })
-      end,
-      desc = "[dap]测试终端输出",
-    },
   },
 
   config = function()
@@ -98,31 +99,33 @@ return {
       },
     }
 
-    -- 调试配置
-    local configuration = {
-      name = "调试程序",
+    -- 动态生成配置
+    local configurations = {}
+
+    -- 添加自动发现的程序配置
+    local executables = find_executables()
+    for _, exe in ipairs(executables) do
+      table.insert(configurations, vim.tbl_deep_extend("force", base_config, exe))
+    end
+
+    -- 添加手动配置（总是可用）
+    table.insert(configurations, {
+      name = "调试程序（手动选择）",
       type = "codelldb",
       request = "launch",
       program = function()
-        -- 获取当前文件名（不含扩展名）
-        local current_file = vim.fn.expand("%:t:r")
-        local default_path = vim.fn.getcwd() .. "/" .. current_file
-
-        return vim.fn.input("程序路径: ", default_path, "file")
+        return vim.fn.input("程序路径: ", vim.fn.getcwd() .. "/", "file")
       end,
       cwd = "${workspaceFolder}",
       stopOnEntry = false,
-      console = "externalTerminal",
-      externalTerminal = {
-        command = "foot", -- 使用 foot 终端
-        args = {}, -- foot 不需要特殊参数
-      },
+      console = "integratedTerminal",
+      terminal = "integrated",
       args = {},
-    }
+    })
 
-    dap.configurations.c = { configuration }
-    dap.configurations.cpp = { configuration }
-    dap.configurations.rust = { configuration }
+    dap.configurations.c = configurations
+    dap.configurations.cpp = configurations
+    dap.configurations.rust = configurations
 
     -- 核心调试图标
     vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError" })
