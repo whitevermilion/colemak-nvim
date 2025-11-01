@@ -26,7 +26,9 @@ return {
       keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
       keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
       keymap("n", "<leader>bc", "<cmd>BufferLinePickClose<CR>", { desc = "Close buffer (pick)" })
-      keymap("n", "<leader>bj", "<cmd>BufferLinePick<CR>", { desc = "Jump to buffer" })
+
+      -- 缓冲区管理
+      keymap("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close other buffers" })
     end,
   },
 }

@@ -8,128 +8,46 @@ return {
   },
   keys = {
     {
-      "<leader>dB",
-      function()
-        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-      end,
-      desc = "Breakpoint Condition",
-    },
-    {
       "<leader>db",
       function()
         require("dap").toggle_breakpoint()
       end,
-      desc = "Toggle Breakpoint",
+      desc = "[dap]切换断点",
     },
     {
       "<leader>dc",
       function()
         require("dap").continue()
       end,
-      desc = "Run/Continue",
-    },
-    {
-      "<leader>da",
-      function()
-        local config = require("dap").get_active_config()
-        config = require("dap.utils").ensure_config(config)
-        config = require("dap").configurations[config.type][config._index]
-        require("dap").run(require("dap.utils").table_merge(config, {
-          args = vim.fn.split(vim.fn.input("Arguments: ", table.concat(config.args or {}, " "))),
-        }))
-      end,
-      desc = "Run with Args",
-    },
-    {
-      "<leader>dC",
-      function()
-        require("dap").run_to_cursor()
-      end,
-      desc = "Run to Cursor",
-    },
-    {
-      "<leader>dg",
-      function()
-        require("dap").goto_()
-      end,
-      desc = "Go to Line (No Execute)",
-    },
-    {
-      "<leader>di",
-      function()
-        require("dap").step_into()
-      end,
-      desc = "Step Into",
-    },
-    {
-      "<leader>dj",
-      function()
-        require("dap").down()
-      end,
-      desc = "Down",
-    },
-    {
-      "<leader>dk",
-      function()
-        require("dap").up()
-      end,
-      desc = "Up",
-    },
-    {
-      "<leader>dl",
-      function()
-        require("dap").run_last()
-      end,
-      desc = "Run Last",
-    },
-    {
-      "<leader>do",
-      function()
-        require("dap").step_out()
-      end,
-      desc = "Step Out",
+      desc = "[dap]运行/继续",
     },
     {
       "<leader>dO",
       function()
         require("dap").step_over()
       end,
-      desc = "Step Over",
+      desc = "[dap]步过函数",
     },
     {
-      "<leader>dP",
+      "<leader>di",
       function()
-        require("dap").pause()
+        require("dap").step_into()
       end,
-      desc = "Pause",
+      desc = "[dap]步入函数",
     },
     {
-      "<leader>dr",
+      "<leader>do",
       function()
-        require("dap").repl.toggle()
+        require("dap").step_out()
       end,
-      desc = "Toggle REPL",
-    },
-    {
-      "<leader>ds",
-      function()
-        require("dap").session()
-      end,
-      desc = "Session",
+      desc = "[dap]步出函数",
     },
     {
       "<leader>dt",
       function()
         require("dap").terminate()
       end,
-      desc = "Terminate",
-    },
-    {
-      "<leader>dw",
-      function()
-        require("dap.ui.widgets").hover()
-      end,
-      desc = "Widgets",
+      desc = "[dap]终止调试",
     },
   },
 
@@ -146,53 +64,25 @@ return {
       },
     }
 
-    -- 配置 C++ 调试配置
-    dap.configurations.cpp = {
+    -- 基础调试配置
+    dap.configurations.c = {
       {
-        name = "Launch C++",
+        name = "调试程序",
         type = "codelldb",
         request = "launch",
         program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          return vim.fn.input("程序路径: ", vim.fn.getcwd() .. "/", "file")
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
-        runInTerminal = true,
         args = {},
       },
     }
+    dap.configurations.cpp = dap.configurations.c
 
-    dap.configurations.c = dap.configurations.cpp
-
-    -- 调试图标
-    vim.fn.sign_define("DapBreakpoint", {
-      text = "●", -- 实心圆
-      texthl = "DiagnosticError",
-      linehl = "",
-      numhl = "",
-    })
-
-    vim.fn.sign_define("DapBreakpointCondition", {
-      text = "◆", -- 菱形
-      texthl = "DiagnosticInfo",
-      linehl = "",
-      numhl = "",
-    })
-
-    vim.fn.sign_define("DapLogPoint", {
-      text = "◇", -- 空心菱形
-      texthl = "DiagnosticHint",
-      linehl = "",
-      numhl = "",
-    })
-
-    vim.fn.sign_define("DapStopped", {
-      text = "→", -- 右箭头
-      texthl = "DiagnosticWarn",
-      linehl = "DapStoppedLine",
-      numhl = "",
-    })
-    -- 高亮设置
+    -- 核心调试图标
+    vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError" })
+    vim.fn.sign_define("DapStopped", { text = "→", texthl = "DiagnosticWarn", linehl = "DapStoppedLine" })
     vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#3e4452" })
   end,
 }

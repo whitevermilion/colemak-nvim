@@ -97,7 +97,7 @@ end)
 
 vim.g.neovide_multigrid = false
 -- 设置默认工作目录
-local default_path = "~/Documents/.obsidian/code/" -- 替换为你想要的默认路径
+local default_path = "~/Documents/.obsidian/" -- 替换为你想要的默认路径
 
 -- 启动时自动切换到默认目录
 vim.api.nvim_create_autocmd("VimEnter", {
