@@ -10,30 +10,31 @@ return {
 
     dapui.setup({
       controls = {
-        enabled = true,
+        enabled = false, -- 禁用控制栏，保持界面简洁
       },
       layouts = {
         {
           elements = {
-            { id = "scopes", size = 0.7 },
-            { id = "breakpoints", size = 0.1 },
-            { id = "stacks", size = 0.1 },
-            { id = "watches", size = 0.1 },
+            { id = "stacks", size = 0.2 }, -- 调用栈
+            { id = "scopes", size = 0.5 }, -- 作用域
+            { id = "breakpoints", size = 0.15 }, -- 断点
+            { id = "watches", size = 0.15 }, -- 监视
           },
           position = "left",
-          size = 25,
+          size = 0.2, -- 20% 宽度
         },
         {
           elements = {
-            { id = "repl", size = 1.0 },
+            { id = "repl", size = 0.3 }, -- REPL
+            { id = "console", size = 0.7 }, -- 控制台
           },
           position = "bottom",
-          size = 8,
+          size = 0.2, -- 20% 高度
         },
       },
     })
 
-    -- 自动打开/关闭调试界面（重要！）
+    -- 自动打开/关闭调试界面
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open({})
     end

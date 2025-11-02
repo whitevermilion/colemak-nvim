@@ -1,15 +1,5 @@
 -- nvim/lua/extras/dap/nvim_dap.lua
 
--- 基础调试配置模板
-local base_config = {
-  type = "codelldb",
-  request = "launch",
-  cwd = "${workspaceFolder}",
-  stopOnEntry = false,
-  console = "externalTerminal",
-  args = {},
-}
-
 return {
   "mfussenegger/nvim-dap",
   event = "VeryLazy",
@@ -60,29 +50,6 @@ return {
       end,
       desc = "[dap]终止调试",
     },
-    -- 添加测试快捷键
-    {
-      "<leader>dT",
-      function()
-        require("dap").run({
-          name = "终端测试",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("测试程序路径: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-          console = "externalTerminal",
-          externalTerminal = {
-            command = "foot",
-            args = { "-T", "DAP 测试终端" },
-          },
-          args = {},
-        })
-      end,
-      desc = "[dap]测试终端输出",
-    },
   },
 
   config = function()
@@ -112,11 +79,7 @@ return {
       end,
       cwd = "${workspaceFolder}",
       stopOnEntry = false,
-      console = "externalTerminal",
-      externalTerminal = {
-        command = "foot", -- 使用 foot 终端
-        args = {}, -- foot 不需要特殊参数
-      },
+      console = "integratedTerminal",
       args = {},
     }
 
