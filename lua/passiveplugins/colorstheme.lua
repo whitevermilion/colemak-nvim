@@ -1,40 +1,34 @@
 -- nvim/lua/passiveplugins/colorscheme.lua
 return {
-  -- GitHub Dark 主题
+  -- Catppuccin 主题
   {
-    "projekt0n/github-nvim-theme",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("github-theme").setup()
-
-      -- 主题切换命令
-      vim.api.nvim_create_user_command("Gitdark", function()
-        vim.cmd.colorscheme("github_dark")
-        vim.notify(
-          "Thoroughly conscious ignorance is the prelude to every real advance in science",
-          vim.log.levels.INFO,
-          {
-            title = "主题切换",
-            timeout = 1000,
-          }
-        )
-      end, { desc = "切换到 GitHub Dark 主题" })
-
-      vim.api.nvim_create_user_command("Ever", function()
-        vim.cmd.colorscheme("everforest")
-        vim.notify("When the moonlight shines on the ground,\n The tree of life will be awaken", vim.log.levels.INFO, {
-          title = "主题切换",
-          timeout = 1000,
-        })
-      end, { desc = "切换到 Everforest 主题" })
+    opts = {
+      -- 只保留最核心的配置
+      flavour = "frappe", -- 主题变体: latte(浅色), frappe(柔和), macchiato(中等), mocha(深色)
+      transparent_background = false, -- 是否透明背景
+      term_colors = true, -- 在终端中启用主题颜色
+      integrations = {
+        -- 只保留你实际使用的插件集成
+        cmp = true, -- 代码补全插件
+        gitsigns = true, -- Git 状态指示器
+        nvimtree = true, -- 文件树
+        telescope = true, -- 搜索插件
+        treesitter = true, -- 语法高亮
+      },
+    },
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
 
       -- 启动时根据时间设置主题
       local current_hour = tonumber(os.date("%H"))
       if current_hour >= 7 and current_hour < 19 then
-        vim.cmd.colorscheme("github_dark")
+        vim.cmd.colorscheme("catppuccin-frappe") -- 白天使用 Catppuccin Frappé
       else
-        vim.cmd.colorscheme("everforest")
+        vim.cmd.colorscheme("everforest") -- 晚上使用 Everforest
       end
     end,
   },

@@ -9,6 +9,7 @@ local poetry_library = {
     "他的猫和夹在书里的14行诗",
   },
   nighttime = {
+    "When the moonlight shines on the ground,\n The tree of life will be awaken",
     "书似青山常堆叠，灯如红豆最相思",
     "月落乌啼霜满天，江枫渔火对愁眠。",
     "星垂平野阔，月涌大江流。",
