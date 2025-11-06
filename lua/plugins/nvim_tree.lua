@@ -1,11 +1,9 @@
 -- nvim/lua/plugins/nvim_tree.lua
---在侧边显示文件树，支持文件创建删除重名
 return {
-  --在侧边显示文件树，支持文件创建删除重名
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<leader>uf", ":NvimTreeToggle<CR>", desc = "Toggle File Tree" }, -- 文件树开关
+    { "<leader>ft", ":NvimTreeToggle<CR>", desc = "[tree]File Tree" }, -- 文件树开关
   },
   opts = {
     -- 新增：文件过滤配置 - 显示被 .gitignore 忽略的文件
