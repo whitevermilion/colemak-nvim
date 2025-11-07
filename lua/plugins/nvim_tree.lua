@@ -83,8 +83,6 @@ return {
       local function opts(desc)
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
-      -- 滚动优化（如果觉得滚动慢）
-      vim.g.neovide_scroll_animation_length = 0.15 -- 默认是 0.3
       -- 首先执行默认映射
       api.config.mappings.default_on_attach(bufnr)
 
@@ -98,35 +96,6 @@ return {
       vim.keymap.set("n", "e", function()
         vim.cmd("normal! k")
       end, opts("Up"))
-
-      -- 添加切换显示被忽略文件的快捷键
-      vim.keymap.set("n", "<leader>gi", function()
-        local view = require("nvim-tree.view")
-        local tree = require("nvim-tree")
-
-        -- 获取当前配置
-        local config = tree.get_config()
-
-        -- 切换 git_ignored 过滤
-        config.filters.git_ignored = not config.filters.git_ignored
-        config.git.ignore = not config.git.ignore
-
-        -- 重新设置配置
-        tree.setup(config)
-
-        -- 刷新视图
-        if view.is_visible() then
-          view.close()
-          view.open()
-        end
-
-        -- 显示当前状态
-        if config.filters.git_ignored then
-          print("隐藏被 .gitignore 的文件")
-        else
-          print("显示所有文件（包括被 .gitignore 的）")
-        end
-      end, opts("Toggle git ignored files"))
 
       -- 禁用原来的 j 和 k 键
       vim.keymap.set("n", "j", "<Nop>", { buffer = bufnr, desc = "Disable j key" })

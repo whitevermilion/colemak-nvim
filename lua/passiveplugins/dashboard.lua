@@ -49,18 +49,12 @@ return
             key = "f",
           },
           {
-            icon = " ",
+            icon = " ",
             desc = " Recent Files          ",
             action = function()
               require("telescope.builtin").oldfiles()
             end,
             key = "r",
-          },
-          {
-            icon = " ",
-            desc = " File Browser          ",
-            action = "NvimTreeToggle",
-            key = "b",
           },
           {
             icon = " ",
