@@ -21,6 +21,7 @@ return {
             "#include <iostream>",
             "#include <vector>",
             "#include <string>",
+            "\n",
             "using namespace std;",
           }
         end,
@@ -36,5 +37,6 @@ return {
     keymap("n", "<leader>lr", "<cmd>Leet run<cr>", { desc = "Leetcode 运行" })
     keymap("n", "<leader>ls", "<cmd>Leet submit<cr>", { desc = "Leetcode 提交" })
     keymap("n", "<leader>lf", "<cmd>Leet desc toggle<cr>", { desc = "Leetcode 描述" })
+    keymap("n", "<leader>lR", "<cmd>Leet reset<cr>", { desc = "Leetcode 重置缓存" })
   end,
 }

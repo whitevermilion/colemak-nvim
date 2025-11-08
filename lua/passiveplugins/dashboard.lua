@@ -57,6 +57,14 @@ return
             key = "r",
           },
           {
+            icon = " ",
+            desc = " LeetCode              ",
+            action = function()
+              vim.cmd("Leet")
+            end,
+            key = "l",
+          },
+          {
             icon = " ",
             desc = " Config                 ",
             action = function()
@@ -67,7 +75,7 @@ return
             key = "c",
           },
           {
-            icon = " ",
+            icon = " ",
             desc = " Extras Manager                  ",
             action = function()
               vim.cmd("edit ~/.config/nvim/lua/core/lazy.lua")
