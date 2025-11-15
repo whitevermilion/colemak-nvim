@@ -21,13 +21,7 @@ return {
     config = function(_, opts)
       require("catppuccin").setup(opts)
 
-      -- 根据时间自动切换 Catppuccin 主题变体
-      local current_hour = tonumber(os.date("%H"))
-      if current_hour >= 7 and current_hour < 19 then
-        vim.cmd.colorscheme("catppuccin-frappe") -- 白天使用 frappe
-      else
-        vim.cmd.colorscheme("catppuccin-mocha") -- 晚上使用 mocha（深色）
-      end
+      vim.cmd.colorscheme("catppuccin-frappe")
     end,
   },
 }

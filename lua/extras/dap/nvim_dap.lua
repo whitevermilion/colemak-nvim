@@ -16,6 +16,13 @@ return {
       desc = "[dap]切换断点",
     },
     {
+      "<leader>dB", -- 注意这里是大写 B
+      function()
+        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      end,
+      desc = "[dap]设置条件断点",
+    },
+    {
       "<leader>dc",
       function()
         require("dap").continue()
@@ -42,6 +49,23 @@ return {
         require("dap").step_out()
       end,
       desc = "[dap]步出函数",
+    },
+    {
+      "<leader>dw",
+      function()
+        local expr = vim.fn.input("监视表达式: ")
+        if expr ~= "" then
+          require("dapui").eval(expr, {})
+        end
+      end,
+      desc = "[dap]添加监视表达式",
+    },
+    {
+      "<leader>dW",
+      function()
+        require("dapui").float_element("watches", {})
+      end,
+      desc = "[dap]打开监视窗口",
     },
     {
       "<leader>dt",
