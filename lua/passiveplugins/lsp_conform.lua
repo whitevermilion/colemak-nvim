@@ -8,7 +8,7 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        markdown = { "prettier", "injected" }, -- 只为 markdown 启用注入
+        markdown = { "prettier", "injected" },
         html = { "prettier" },
         htm = { "prettier" },
         css = { "prettier" },
@@ -58,7 +58,15 @@ return {
         },
         stylua = {
           command = "stylua",
-          args = { "-" }, -- 使用默认配置
+          args = {
+            "--indent-width",
+            "2",
+            "--indent-type",
+            "Spaces",
+            "--collapse-simple-statement",
+            "Always", -- 折叠简单语句
+            "-",
+          },
         },
         clang_format = {
           command = "clang-format",
