@@ -11,14 +11,11 @@ local poetry_library = {
   nighttime = {
     "When the moonlight shines on the ground,\n The tree of life will be awaken",
     "书似青山常堆叠，灯如红豆最相思",
-    "月落乌啼霜满天，江枫渔火对愁眠。",
-    "星垂平野阔，月涌大江流。",
     "我本可以忍受黑暗，如果我不曾见过光明，\n可如今阳光把我的孤独照耀的更加荒凉。",
   },
 }
 
 function M.setup()
-  -- 等待 notify 完全加载后直接设置命令
   vim.api.nvim_create_autocmd("User", {
     pattern = "ActuallyLoaded",
     once = true,
@@ -34,7 +31,6 @@ function M.setup()
         })
       end, 500)
 
-      -- 简化的诗词命令
       vim.api.nvim_create_user_command("Poem", function()
         local current_hour = tonumber(os.date("%H"))
         local time_type = (current_hour >= 7 and current_hour < 19) and "daytime" or "nighttime"
