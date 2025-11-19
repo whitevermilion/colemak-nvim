@@ -1,8 +1,22 @@
 -- nvim/lua/extras/lang/md/render_markdown.lua
 return {
   "MeanderingProgrammer/render-markdown.nvim",
-  ft = "markdown",
+  dependencies = {
+    {
+
+      "nvim-treesitter/nvim-treesitter",
+      config = function()
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = { "llm", "markdown" },
+          callback = function() vim.treesitter.start(0, "markdown") end,
+        })
+      end,
+    },
+    "nvim-mini/mini.icons",
+  },
+  ft = { "markdown", "llm" }, -- 如果阅读llm.nvim插件的保存记录，可以优化llm文件的体验
   opts = {
+    restart_highlighter = true,
     highlight = {
       cursor_line = false,
     },
@@ -111,7 +125,6 @@ return {
   },
   config = function(_, opts)
     require("render-markdown").setup(opts)
-
     -- 设置双链为紫色
     vim.api.nvim_set_hl(0, "RenderMarkdownWikiLink", {
       fg = "#c678dd", -- 紫色
