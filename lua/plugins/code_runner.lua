@@ -3,38 +3,52 @@ return {
   "CRAG666/code_runner.nvim",
   config = function()
     require("code_runner").setup({
-      -- 开始：文件类型与执行命令配置
+      -- [CodeRunner] 文件类型与执行命令配置
       filetype = {
+        -- [CodeRunner] C 语言配置：编译并运行 C 程序
         c = {
           "cd $dir &&",
           "gcc $fileName -o $fileNameWithoutExt -lm -g -Wall &&",
           "$dir/$fileNameWithoutExt",
         },
+        -- [CodeRunner] C++ 配置：编译并运行 C++ 程序
         cpp = {
           "cd $dir &&",
           "g++ $fileName -o $fileNameWithoutExt -g -Wall &&",
           "$dir/$fileNameWithoutExt",
         },
+        -- [CodeRunner] 可根据需要添加更多语言支持：
+        -- python = "python3 -u $fileName",
+        -- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        -- javascript = "node $fileName",
+        -- typescript = "npx ts-node $fileName",
       },
-      -- 结束：文件类型与执行命令配置
-      -- 在终端中运行代码，支持输入
+
+      -- [CodeRunner] 终端窗口配置
       term = {
-        position = "bot",
-        size = 15,
+        position = "bot", -- [CodeRunner] 终端位置：bot|top|left|right
+        size = 15, -- [CodeRunner] 终端窗口大小
       },
-      -- 运行前是否保存文件
-      startinsert = true,
+
+      -- [CodeRunner] 行为选项
+      startinsert = true, -- [CodeRunner] 运行代码时自动进入插入模式
     })
-    -- 设置快捷键
-    vim.keymap.set("n", "<leader>rr", ":RunCode<CR>", { noremap = true, silent = false, desc = "Run Code" })
-    vim.keymap.set("n", "<leader>rf", ":RunFile<CR>", { noremap = true, silent = false, desc = "Run File" })
-    vim.keymap.set(
-      "n",
-      "<leader>rft",
-      ":RunFile tab<CR>",
-      { noremap = true, silent = false, desc = "Run File in New Tab" }
-    )
-    vim.keymap.set("n", "<leader>rp", ":RunProject<CR>", { noremap = true, silent = false, desc = "Run Project" })
-    vim.keymap.set("n", "<leader>rc", ":RunClose<CR>", { noremap = true, silent = false, desc = "Close Runner" })
+
+    -- [CodeRunner] 快捷键映射配置
+    vim.keymap.set({ "n", "v" }, "<leader>rr", ":RunCode<CR>", {
+      noremap = true,
+      silent = false,
+      desc = "[CodeRunner] 运行代码（normal模式运行文件，visual模式运行选中）",
+    })
+    vim.keymap.set("n", "<leader>rp", ":RunProject<CR>", {
+      noremap = true,
+      silent = false,
+      desc = "[CodeRunner] 运行整个项目",
+    })
+    vim.keymap.set("n", "<leader>rc", ":RunClose<CR>", {
+      noremap = true,
+      silent = false,
+      desc = "[CodeRunner] 关闭运行器窗口",
+    })
   end,
 }

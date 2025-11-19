@@ -7,11 +7,13 @@ local poetry_library = {
     "人生若只如初见，何事秋风悲画扇。",
     "海内存知己，天涯若比邻。",
     "他的猫和夹在书里的14行诗",
+    "人是为明天活着的，因为记忆中有朝阳晓露",
   },
   nighttime = {
     "When the moonlight shines on the ground,\n The tree of life will be awaken",
     "书似青山常堆叠，灯如红豆最相思",
     "我本可以忍受黑暗，如果我不曾见过光明，\n可如今阳光把我的孤独照耀的更加荒凉。",
+    "这是黄昏的太阳,\n我们却错把他当成了黎明的曙光",
   },
 }
 
@@ -27,7 +29,7 @@ function M.setup()
         local poems = poetry_library[time_type]
         local poem = poems[math.random(1, #poems)]
         vim.notify(poem, vim.log.levels.INFO, {
-          timeout = 5000,
+          timeout = 3000,
         })
       end, 500)
 
