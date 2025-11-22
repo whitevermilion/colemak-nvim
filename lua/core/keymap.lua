@@ -24,25 +24,6 @@ map("n", "<C-e>", "<C-y>", opt) -- 向上滚动
 -- 分屏管理 (<leader>s 前缀)
 set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "[S]plit [V]ertical 垂直分屏" })
 set("n", "<leader>sh", "<cmd>split<cr>", { desc = "[S]plit [H]orizontal 水平分屏" })
-set("n", "<leader>sc", "<C-w>c", { desc = "[S]plit [C]lose 关闭当前窗口" })
-set("n", "<leader>so", "<C-w>o", { desc = "[S]plit [O]nly 仅保留当前窗口" })
-set("n", "<leader>se", "<C-w>=", { desc = "[S]plit [E]qualize 等分窗口尺寸" })
-
--- 窗口最大化切换
-set("n", "<leader>sm", function()
-  local cur_win = vim.api.nvim_get_current_win()
-  if vim.w.maximized and vim.w.maximized ~= cur_win then
-    vim.cmd("wincmd =") -- 重置布局
-  end
-  vim.cmd("wincmd _ | wincmd |") -- 最大化当前窗口
-  vim.w.maximized = vim.w.maximized == cur_win and nil or cur_win
-end, { desc = "[S]plit [M]aximize Toggle 最大化/恢复窗口" })
-
--- 快速在分屏中打开文件
-set("n", "<leader>sf", function()
-  local file = vim.fn.input("Open file in split: ", "", "file")
-  if file ~= "" then vim.cmd("split " .. file) end
-end, { desc = "[S]plit [F]ile 分屏打开文件" })
 
 -- ===================== 编辑操作 =====================
 -- 撤销操作
@@ -88,12 +69,12 @@ set("n", "L", "<C-r>", { noremap = true, silent = true, desc = "重做" })
 -- ===================== 自定义命令 =====================
 
 -- 修改md文件的标题级别
-vim.api.nvim_create_user_command("Mdtitle+", function(o)
+vim.api.nvim_create_user_command("Mdtitleup", function(o)
   vim.cmd(o.line1 .. "," .. o.line2 .. "s/^\\(#\\+\\)/\\1#/")
   vim.notify("📈 标题已提升", vim.log.levels.INFO)
 end, { range = true })
 
-vim.api.nvim_create_user_command("Mdtitle-", function(o)
+vim.api.nvim_create_user_command("Mdtitledown", function(o)
   vim.cmd(o.line1 .. "," .. o.line2 .. "s/^\\(#\\+\\)#/\\1/")
   vim.notify("📉 标题已降低", vim.log.levels.INFO)
 end, { range = true })
