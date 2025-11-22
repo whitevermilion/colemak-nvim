@@ -7,4 +7,10 @@ return {
   keys = {
     { "<leader>gg", "<cmd>LazyGit<cr>", desc = "[LazyGit]" },
   },
+  config = function()
+    -- 创建 :lazygit 命令别名
+    vim.api.nvim_create_user_command("Lazygit", "LazyGit", {
+      desc = "Open LazyGit",
+    })
+  end,
 }
