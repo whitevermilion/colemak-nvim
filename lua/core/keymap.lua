@@ -41,9 +41,7 @@ end, { desc = "[S]plit [M]aximize Toggle 最大化/恢复窗口" })
 -- 快速在分屏中打开文件
 set("n", "<leader>sf", function()
   local file = vim.fn.input("Open file in split: ", "", "file")
-  if file ~= "" then
-    vim.cmd("split " .. file)
-  end
+  if file ~= "" then vim.cmd("split " .. file) end
 end, { desc = "[S]plit [F]ile 分屏打开文件" })
 
 -- ===================== 编辑操作 =====================
@@ -88,6 +86,18 @@ set("n", "l", "u", { noremap = true, silent = true, desc = "撤销" })
 set("n", "L", "<C-r>", { noremap = true, silent = true, desc = "重做" })
 
 -- ===================== 自定义命令 =====================
+
+-- 修改md文件的标题级别
+vim.api.nvim_create_user_command("Mdtitle+", function(o)
+  vim.cmd(o.line1 .. "," .. o.line2 .. "s/^\\(#\\+\\)/\\1#/")
+  vim.notify("📈 标题已提升", vim.log.levels.INFO)
+end, { range = true })
+
+vim.api.nvim_create_user_command("Mdtitle-", function(o)
+  vim.cmd(o.line1 .. "," .. o.line2 .. "s/^\\(#\\+\\)#/\\1/")
+  vim.notify("📉 标题已降低", vim.log.levels.INFO)
+end, { range = true })
+
 -- 保存并返回 Dashboard
 vim.api.nvim_create_user_command("WQ", function()
   vim.cmd("write") -- 保存当前文件
