@@ -28,8 +28,9 @@ return {
           lualine_b = { "branch" },
           lualine_c = { "filename" },
           lualine_x = {
-            { "fileformat", symbols = { unix = "LF", dos = "CRLF", mac = "CR" } },
+            "fileformat",
             "encoding",
+            "filetype",
           },
           lualine_y = { "progress" },
           lualine_z = { "location" },

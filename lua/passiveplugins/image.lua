@@ -6,7 +6,7 @@ return {
 
   -- 可选依赖
   dependencies = {
-    "nvim-tree/nvim-web-devicons", -- 可选：用于文件图标
+    "nvim-tree/nvim-web-devicons",
   },
 
   config = function()
