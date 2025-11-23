@@ -7,13 +7,8 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      local status, lualine = pcall(require, "lualine")
-      if not status then
-        vim.notify("没有找到 lualine", vim.log.levels.WARN)
-        return
-      end
-
-      local theme = pcall(require, "lualine.themes.auto") and "auto" or "tokyonight"
+      local lualine = require("lualine")
+      local theme = "auto"
 
       lualine.setup({
         options = {
@@ -27,27 +22,14 @@ return {
             statusline = { "NvimTree", "alpha", "dashboard", "Trouble", "Outline" },
           },
           globalstatus = true,
-          refresh = { statusline = 500 },
         },
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch" },
           lualine_c = { "filename" },
           lualine_x = {
-            {
-              "fileformat",
-              symbols = { unix = "LF", dos = "CRLF", mac = "CR" },
-              fmt = function(str)
-                return vim.bo.fileformat ~= "unix" and str or ""
-              end,
-            },
-            {
-              "encoding",
-              fmt = function(str)
-                return vim.bo.fileencoding ~= "utf-8" and str or ""
-              end,
-            },
-            "filetype",
+            { "fileformat", symbols = { unix = "LF", dos = "CRLF", mac = "CR" } },
+            "encoding",
           },
           lualine_y = { "progress" },
           lualine_z = { "location" },
