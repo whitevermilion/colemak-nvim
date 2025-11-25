@@ -1,0 +1,86 @@
+-- ~/.config/nvim/lua/passiveplugins/blink_test.lua
+return {
+  {
+    "tzachar/blink.nvim",
+    event = "InsertEnter",
+    dependencies = {
+      "tzachar/cmp-blink", -- 如果需要与其他源集成
+    },
+    config = function()
+      local blink = require("blink")
+
+      blink.setup({
+        -- LSP 源配置
+        sources = {
+          {
+            name = "lsp",
+            -- 可以调整 LSP 补全的优先级等
+            priority = 1000,
+            -- 可以设置触发字符
+            trigger_characters = { ".", ":", "->", "::" },
+          },
+        },
+
+        -- 按键映射
+        mapping = {
+          select_next = "<C-n>",
+          select_prev = "<C-p>",
+          confirm = "<CR>",
+          -- 可以添加更多映射
+          close = "<C-e>",
+        },
+
+        -- 外观配置
+        formatting = {
+          format = function(entry, item)
+            -- 简单的格式化，保持与 cmp 类似的显示
+            local kind_icons = {
+              Text = "",
+              Method = "󰆧",
+              Function = "󰊕",
+              Constructor = "",
+              Field = "󰇽",
+              Variable = "󰂡",
+              Class = "󰠱",
+              Interface = "",
+              Module = "",
+              Property = "󰜢",
+              Unit = "󰑭",
+              Value = "󰎠",
+              Enum = "",
+              Keyword = "󰌋",
+              Snippet = "",
+              Color = "󰏘",
+              File = "󰈙",
+              Reference = "",
+              Folder = "󰉋",
+              EnumMember = "",
+              Constant = "󰏿",
+              Struct = "",
+              Event = "",
+              Operator = "󰆕",
+              TypeParameter = "󰅲",
+            }
+
+            item.kind = string.format("%s %s", kind_icons[item.kind] or "?", item.kind)
+            return item
+          end,
+        },
+
+        -- 性能优化选项
+        performance = {
+          debounce = 30, -- 防抖延迟（毫秒）
+          throttle = 50, -- 节流间隔
+        },
+
+        -- 其他选项
+        view = {
+          entries = "native", -- 或者 "custom"
+        },
+      })
+
+      -- 可选：设置 blink 为默认补全（覆盖 vim.fn.complete）
+      -- blink.attach()
+    end,
+  },
+}

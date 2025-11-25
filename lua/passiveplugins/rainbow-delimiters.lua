@@ -29,17 +29,6 @@ return {
         -- 黑名单文件类型（不需要彩虹括号的文件类型）
         blacklist = { "help", "terminal", "dashboard", "packer", "lazy" },
       })
-
-      -- 可选：自定义高亮颜色（如果你想要特定的颜色）
-      vim.cmd([[
-        highlight RainbowDelimiterRed guifg=#ff6b6b
-        highlight RainbowDelimiterYellow guifg=#feca57
-        highlight RainbowDelimiterBlue guifg=#48dbfb
-        highlight RainbowDelimiterOrange guifg=#ff9f43
-        highlight RainbowDelimiterGreen guifg=#1dd1a1
-        highlight RainbowDelimiterViolet guifg=#f368e0
-        highlight RainbowDelimiterCyan guifg=#0abde3
-      ]])
     end,
   },
 }
