@@ -4,7 +4,7 @@ return {
   {
     "MagicDuck/grug-far.nvim",
     cmd = "GrugFar",
-    keys = { { "<leader>sr", "<cmd>GrugFar<cr>", desc = "Search & Replace" } },
+    keys = { { "<leader>sr", "<cmd>GrugFar<cr>", desc = "[GrugFar] Search & Replace" } },
   },
 
   -- 快速跳转增强插件
@@ -16,9 +16,7 @@ return {
       {
         "s",
         mode = { "n", "x", "o" },
-        function()
-          require("flash").jump()
-        end,
+        function() require("flash").jump() end,
         desc = "Flash Jump",
       },
     },
@@ -30,8 +28,12 @@ return {
     cmd = "TroubleToggle",
     opts = {},
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "[trouble] Diagnostics (Trouble)" },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "[trouble] Buffer Diagnostics (Trouble)",
+      },
     },
   },
 }
