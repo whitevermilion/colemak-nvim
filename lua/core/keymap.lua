@@ -24,6 +24,7 @@ map("n", "<C-e>", "<C-y>", opt) -- 向上滚动
 -- 分屏管理 (<leader>s 前缀)
 set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "[S]plit [V]ertical 垂直分屏" })
 set("n", "<leader>sh", "<cmd>split<cr>", { desc = "[S]plit [H]orizontal 水平分屏" })
+set("n", "<leader>sx", "<cmd>wincmd x<cr>", { desc = "[S]plit e[X]change 交换窗口" })
 
 -- ===================== 编辑操作 =====================
 -- 撤销操作
