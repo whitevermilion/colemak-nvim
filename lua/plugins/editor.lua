@@ -21,19 +21,4 @@ return {
       },
     },
   },
-
-  -- 诊断和问题管理插件
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-    opts = {},
-    keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "[trouble] Diagnostics (Trouble)" },
-      {
-        "<leader>xX",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        desc = "[trouble] Buffer Diagnostics (Trouble)",
-      },
-    },
-  },
 }

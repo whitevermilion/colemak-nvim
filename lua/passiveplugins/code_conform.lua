@@ -1,4 +1,4 @@
--- nvim/lua/passiveplugins/lsp_conform.lua
+-- nvim/lua/passiveplugins/code_conform.lua
 return {
   "stevearc/conform.nvim",
   dependencies = { "williamboman/mason.nvim" },
@@ -11,11 +11,10 @@ return {
         markdown = { "prettier", "injected" },
         html = { "prettier" },
         htm = { "prettier" },
-        css = { "prettier" },
-        javascript = { "prettier" },
         c = { "clang_format" },
         cpp = { "clang_format" },
         lua = { "stylua" },
+        rust = { "rustfmt" },
       },
 
       formatters = {
@@ -28,12 +27,8 @@ return {
 
             if ext == "html" or ext == "htm" then
               parser = "html"
-            elseif ext == "css" then
-              parser = "css"
             elseif ext == "md" or ext == "markdown" then
               parser = "markdown"
-            elseif ext == "js" or ext == "javascript" then
-              parser = "babel"
             else
               parser = "html" -- 默认使用 html 解析器
             end
@@ -56,6 +51,7 @@ return {
             }
           end,
         },
+
         stylua = {
           command = "stylua",
           args = {
@@ -68,9 +64,16 @@ return {
             "-",
           },
         },
+
         clang_format = {
           command = "clang-format",
           args = { "--style={BasedOnStyle: Google, UseTab: false, IndentWidth: 4, TabWidth: 4}" },
+        },
+
+        rustfmt = {
+          command = "rustfmt",
+          args = { "--edition", "2021", "--quiet" }, -- 根据你的 Rust edition 调整，可通过 `rustc --version` 查看
+          stdin = true, -- 重要：rustfmt 默认从标准输入读取
         },
       },
     })
@@ -84,8 +87,7 @@ return {
           c = { "clang_format" },
           cpp = { "clang_format" },
           html = { "prettier" },
-          css = { "prettier" },
-          javascript = { "prettier" },
+          rust = { "rustfmt" },
         },
       },
     }
