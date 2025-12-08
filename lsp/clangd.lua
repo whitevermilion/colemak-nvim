@@ -1,5 +1,12 @@
--- nvim/lsp/clangd.lua
-return {
+-- ~/.config/nvim/lsp/clangd.lua
+local lspconfig = require("lspconfig")
+
+if not lspconfig.clangd then
+  vim.notify("lspconfig: clangd config not found!", vim.log.levels.ERROR)
+  return
+end
+
+lspconfig.clangd.setup({
   capabilities = {
     textDocument = {
       completion = {
@@ -8,7 +15,6 @@ return {
     },
     offsetEncoding = { "utf-8", "utf-16" },
   },
-  -- cmd = { 'clangd', '--malloc-trim' },
   cmd = { "clangd" },
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   root_markers = {
@@ -17,7 +23,7 @@ return {
     ".clang-format",
     "compile_commands.json",
     "compile_flags.txt",
-    "configure.ac", -- AutoTools
+    "configure.ac",
   },
   single_file_support = true,
-}
+})
