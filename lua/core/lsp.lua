@@ -2,11 +2,11 @@
 local M = {}
 
 function M.setup()
-  require("lsp.clangd")
-  require("lsp.rust_analyzer")
-  require("lsp.pyright")
-  require("lsp.marksman")
-  require("lsp.lua_ls")
+  vim.lsp.enable("clangd")
+  vim.lsp.enable("lua_ls")
+  vim.lsp.enable("marksman")
+  vim.lsp.enable("pyright")
+  vim.lsp.enable("rust_analyzer")
 end
 
 return M
