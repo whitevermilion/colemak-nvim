@@ -1,15 +1,20 @@
+red@Arch nvim
+❯ tree
 .
 ├── after
 │   └── ftplugin
 │       ├── cpp.lua
-│       └── markdown.lua
+│       ├── md.lua
+│       └── rs.lua
+├── help.md
 ├── init.lua
 ├── lazy-lock.json
 ├── lsp
 │   ├── clangd.lua
 │   ├── lua_ls.lua
 │   ├── marksman.lua
-│   └── pyright.lua
+│   ├── pyright.lua
+│   └── rust_analyzer.lua
 ├── lua
 │   ├── core
 │   │   ├── amendments.lua
@@ -17,13 +22,16 @@
 │   │   ├── basic.lua
 │   │   ├── keymap.lua
 │   │   ├── lazy.lua
+│   │   ├── lsp.lua
 │   │   ├── neovide.lua
 │   │   └── nerd.txt
 │   ├── extras
 │   │   ├── ai
+│   │   │   ├── example.txt
 │   │   │   └── llm.lua
 │   │   ├── dap
 │   │   │   ├── nvim_dap.lua
+│   │   │   ├── nvim_dap.lua.bak
 │   │   │   ├── nvim_dap_ui.lua
 │   │   │   └── nvim_dap_virtual_text.lua
 │   │   ├── extras_list.lua
@@ -33,11 +41,18 @@
 │   │   │   │   └── c-template.c
 │   │   │   ├── cpp
 │   │   │   │   └── cpp-template.cpp
-│   │   │   └── md
-│   │   │       ├── markdown-toc.lua
-│   │   │       ├── mdeval.lua
-│   │   │       ├── obsidian.lua
-│   │   │       └── render-markdown.lua
+│   │   │   ├── java
+│   │   │   ├── md
+│   │   │   │   ├── img_clip.lua
+│   │   │   │   ├── markdown_toc.lua
+│   │   │   │   ├── mdeval.lua
+│   │   │   │   ├── obsidian.lua
+│   │   │   │   └── render_markdown.lua
+│   │   │   └── python
+│   │   ├── leetcode
+│   │   │   ├── ch_readme.md
+│   │   │   ├── leetcode.lua
+│   │   │   └── readme.md
 │   │   └── todo_list
 │   │       └── todo_list.md
 │   ├── lua_function
@@ -45,32 +60,45 @@
 │   │   ├── time_count.lua
 │   │   └── todo_list_remainder.lua
 │   ├── passiveplugins
-│   │   ├── colorstheme.lua
+│   │   ├── catppuccin.lua
+│   │   ├── code_conform.lua
+│   │   ├── code_linting.lua
+│   │   ├── colortheme.lua
 │   │   ├── dashboard.lua
 │   │   ├── fcitx.lua
 │   │   ├── icons.lua
+│   │   ├── image.lua
 │   │   ├── lazydev.lua
+│   │   ├── lsp_blink.lua.bak
 │   │   ├── lsp_cmp.lua
-│   │   ├── lsp_conform.lua
-│   │   ├── lsp_linting.lua
 │   │   ├── mason.lua
 │   │   ├── mini-pairs.lua
 │   │   ├── nvim_lastplace.lua
 │   │   ├── rainbow-delimiters.lua
 │   │   ├── scrollbar.lua
 │   │   ├── ui.lua
-│   │   └── which-key.lua
+│   │   └── which_key.lua
 │   └── plugins
+│       ├── aerial.lua
 │       ├── bufferline.lua
 │       ├── code_runner.lua
 │       ├── editor.lua
 │       ├── git.lua
+│       ├── lazygit.lua
+│       ├── mermaid.lua
 │       ├── nvim_tree.lua
 │       ├── nvim_treesitter.lua
 │       ├── overseer.lua
 │       ├── snacks.lua.bak
 │       ├── telescope.lua
+│       ├── temp.md
 │       ├── toggleterm.lua
 │       └── ufo.lua
+├── mode.md
+├── starttime.md
+├── test.md
 ├── tree.txt
+├── valgrind.md
 └── visual-model.md
+
+20 directories, 80 files
