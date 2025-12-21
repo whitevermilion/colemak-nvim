@@ -37,22 +37,6 @@ return {
     end,
   },
 
-  -- Cyberdream 赛博朋克
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = true,
-    cmd = "Cyberdream",
-    config = function()
-      require("cyberdream").setup({
-        theme = "dark",
-        transparent = false,
-        italic_comments = true,
-      })
-
-      vim.api.nvim_create_user_command("Cyberdream", function() vim.cmd.colorscheme("cyberdream") end, {})
-    end,
-  },
-
   -- Gruvbox Material 材质绿调
   {
     "sainnhe/gruvbox-material",
