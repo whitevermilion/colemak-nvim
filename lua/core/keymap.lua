@@ -27,9 +27,6 @@ set("n", "<leader>sh", "<cmd>split<cr>", { desc = "[S]plit [H]orizontal 水平�
 set("n", "<leader>sx", "<cmd>wincmd x<cr>", { desc = "[S]plit e[X]change 交换窗口" })
 
 -- ===================== 编辑操作 =====================
--- 撤销操作
-set("n", "<C-z>", "<Cmd>undo<CR>", { silent = true, desc = "撤销" })
-
 -- Visual 模式操作
 map("v", "<", "<gv", opt) -- 向左缩进
 map("v", ">", ">gv", opt) -- 向右缩进

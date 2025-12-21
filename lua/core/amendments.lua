@@ -25,4 +25,6 @@ vim.cmd([[
   command! Wqa wqa
   command! WQa wqa
   command! WQA wqa
+  command! WA wa
+  command! Wa wa
 ]])
