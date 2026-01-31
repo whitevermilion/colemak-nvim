@@ -1,0 +1,30 @@
+return {
+  -- 配置示例
+  {
+    "radare2/r2.nvim",
+    dependencies = {
+      "radare2/radare2", -- 需要先安装radare2本体
+    },
+    config = function()
+      require("r2").setup({
+        -- 配置选项
+        r2_cmd = "r2", -- radare2命令路径
+        ui = {
+          auto_open = true, -- 自动打开分析界面
+        },
+      })
+    end,
+  },
+  {
+    "david942j/ghidra.nvim", -- 这是目前最活跃的集成
+    build = "./install.sh", -- 需要构建
+    config = function()
+      require("ghidra").setup({
+        -- Ghidra安装路径
+        ghidra_path = "/path/to/ghidra",
+        -- 项目设置
+        project_name = "CTF_Projects",
+      })
+    end,
+  },
+}
