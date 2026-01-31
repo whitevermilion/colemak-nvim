@@ -6,6 +6,7 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "rcarriga/nvim-notify",
     "nvim-tree/nvim-web-devicons",
   },
   cmd = "Leet",
@@ -35,9 +36,7 @@ return {
       ["question_enter"] = {
         function()
           -- 保存原来的 Tab 映射
-          if not vim.g.original_tab_mapping then
-            vim.g.original_tab_mapping = vim.fn.maparg("<Tab>", "n")
-          end
+          if not vim.g.original_tab_mapping then vim.g.original_tab_mapping = vim.fn.maparg("<Tab>", "n") end
 
           -- 设置新的 Tab 映射
           vim.keymap.set("n", "<Tab>", "<cmd>Leet tabs<CR>", {
