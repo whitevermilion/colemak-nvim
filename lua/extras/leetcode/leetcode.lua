@@ -14,8 +14,8 @@ return {
     lang = "cpp",
     cn = { enabled = true, translator = true, translate_problems = true },
     storage = {
-      home = "~/Documents/.obsidian/leetcode/",
-      cache = "~/Documents/.obsidian/leetcode/.cache",
+      home = "~/Code/vim_leetcode_home/",
+      cache = "~/Code/vim_leetcode_home/.cache/",
     },
     injector = {
       ["cpp"] = {
