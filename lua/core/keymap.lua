@@ -9,8 +9,6 @@ local opt = { noremap = true, silent = true }
 local set = vim.keymap.set
 
 -- ===================== 基础导航 =====================
--- 禁用 J 键，防止误触
-map("n", "J", "<Nop>", opt)
 
 -- 单词移动映射
 set("n", "j", "e", { noremap = true, silent = true })
