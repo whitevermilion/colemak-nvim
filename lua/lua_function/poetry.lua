@@ -10,6 +10,8 @@ local poetry_library = {
     "人是为明天活着的，因为记忆中有朝阳晓露",
     "在隆冬，我终于明白，\n我身上有个不可战胜的夏天",
     "我最终与命运和解,\n往后余生皆是暖阳",
+    "长恨此身非我有，何时忘却营营。\n夜阑风静縠纹平。\n小舟从此逝，江海寄余生。",
+    "渊停岳峙",
   },
   nighttime = {
     "When the moonlight shines on the ground,\n The tree of life will be awaken",
